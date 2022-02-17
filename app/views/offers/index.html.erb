@@ -22,8 +22,10 @@
               <td><%= offer.count %></td>
               <td><%= offer.reward %></td>
               <td class="actions">
-                <%= link_to "领取任务", take_offer_path(offer), class: "btn btn-success", id: "takeBtn", method: :put %>
-                <%= link_to "完成任务", "#", class: "btn btn-primary", id: "completeBtn", data: {id: offer.id} %>
+                <% if current_user %>
+                  <%= link_to "领取任务", take_offer_path(offer), class: "btn btn-success", id: "takeBtn", method: :put if current_user.fetch_history(offer.id).nil? %>
+                  <%= link_to "完成任务", "#", class: "btn btn-primary", id: "completeBtn", data: {id: offer.id} if current_user.fetch_history(offer.id)&.taken? %>
+                <% end %>
               </td>
             </tr>
           <% end %>

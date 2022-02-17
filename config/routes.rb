@@ -7,4 +7,7 @@ Rails.application.routes.draw do
       put :complete
     end
   end
+
+  post 'login', to: "users#login", as: :login
+  post 'logout', to: "users#logout", as: :logout
 end

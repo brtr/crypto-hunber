@@ -1,5 +1,6 @@
 class OfferHistory < ApplicationRecord
   belongs_to :offer
+  belongs_to :user
 
   enum status: [:submitted, :taken, :done]
 

@@ -29,15 +29,29 @@ const toggleAddress = function() {
 }
 
 const checkLogin = async function() {
+    $("#spinner").removeClass("hide");
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     if (accounts.length > 0) {
         localStorage.setItem("loginAddress", accounts[0]);
         loginAddress = accounts[0];
+        login();
     } else {
         localStorage.removeItem("loginAddress");
         loginAddress = null;
+        toggleAddress();
     }
-    toggleAddress();
+}
+
+const login = function() {
+    $.ajax({
+        url: "/login",
+        method: "post",
+        data: { address: loginAddress }
+    }).done(function(data) {
+        if (data.success) {
+            location.reload();
+        }
+    })
 }
 
 const complete = async function(offerId) {
@@ -48,13 +62,12 @@ const complete = async function(offerId) {
             const url = "/offers/" + offerId + "/complete";
             const $form = $('<form action="' + url + '" method="post">' +
                 '<input type="hidden" name="authenticity_token" value="' + token + '" />' +
-                '<input type="hidden" name="user_address" value="' + loginAddress + '" />' +
                 '<input type="hidden" name="_method" value="put" /></form>');
             $('body').append($form);
             $form.submit();
         } else {
             alert("任务未完成不能领取奖励!");
-            location.reload();
+            $("#spinner").addClass("hide");
         }
     } catch (err) {
         fetchErrMsg(err);
@@ -72,15 +85,18 @@ $(document).on('turbolinks:load', function() {
         });
 
         $("#btn-logout").on("click", function(){
-            loginAddress = null;
-            toggleAddress();
-        });
-
-        $("#takeBtn").on("click", function(e) {
             $("#spinner").removeClass("hide");
-            const url = $(this).attr("href");
-            e.originalEvent.currentTarget.href = url + "?user_address=" + loginAddress;
-        })
+            localStorage.removeItem("loginAddress");
+
+            $.ajax({
+                url: "/logout",
+                method: "post"
+            }).done(function(data) {
+                if (data.success) {
+                    location.reload();
+                }
+            })
+        });
 
         $("#completeBtn").on("click", async function(e) {
             e.preventDefault();
@@ -96,19 +112,17 @@ $(document).on('turbolinks:load', function() {
             if (accounts.length > 0) {
                 localStorage.setItem("loginAddress", accounts[0]);
                 loginAddress = accounts[0];
+                login();
             } else {
                 localStorage.removeItem("loginAddress");
                 loginAddress = null;
+                toggleAddress();
             }
-            toggleAddress();
         });
 
         // detect Network account change
         ethereum.on('chainChanged', function(networkId){
             console.log('networkChanged',networkId);
-            if (networkId != parseInt(TargetChain.id)) {
-                alert("We don't support this chain, please switch to " + TargetChain.name);
-            }
         });
     });
 });

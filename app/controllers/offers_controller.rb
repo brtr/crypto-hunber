@@ -6,7 +6,7 @@ class OffersController < ApplicationController
   end
 
   def take
-    history = @offer.offer_histories.where(user_address: params[:user_address]).first_or_create
+    history = @histories.first_or_create
     if history.submitted?
       history.taken!
       @offer.count -= 1
@@ -20,7 +20,7 @@ class OffersController < ApplicationController
   end
 
   def complete
-    history = @offer.offer_histories.where(user_address: params[:user_address]).take
+    history = @histories.take
 
     if history
       if history.taken?
@@ -39,5 +39,6 @@ class OffersController < ApplicationController
   private
   def get_offer
     @offer = Offer.find params[:id]
+    @histories = @offer.offer_histories.where(user_id: current_user.id)
   end
 end
