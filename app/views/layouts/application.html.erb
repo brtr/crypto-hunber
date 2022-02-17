@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Offerwall</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <%= render "layouts/notices" %>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <div class="loginBtns">
+            <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
+            <div class="meta_dropdown hide">
+              <a href="#" role="button" class="dropdown-toggle" id="metaDropdownMenuLink" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                <span id="login_address"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="metaDropdownMenuLink">
+                <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="spinner" class="hide">
+        <%= image_tag("loading.svg") %>
+      </div>
+      <%= yield %>
+    </div>
+  </body>
+</html>
