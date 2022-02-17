@@ -9,6 +9,8 @@ class OffersController < ApplicationController
     history = @offer.offer_histories.where(user_address: params[:user_address]).first_or_create
     if history.submitted?
       history.taken!
+      @offer.count -= 1
+      @offer.save
       flash[:notice] = "任务已领取"
     else
       flash[:alert] = "不能重复领取任务"
