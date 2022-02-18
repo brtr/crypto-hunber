@@ -11,19 +11,16 @@ const tokenAddress = NODE_ENV["TOKEN_ADDRESS"];
 const tokenABI = NODE_ENV["TOKEN_ABI"];
 const TokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
 
-const checkChainId = async function () {
+const checkContract = async function() {
     const { chainId } = await provider.getNetwork();
     if (chainId != parseInt(TargetChain.id)) {
         alert("We don't support this chain, please switch to " + TargetChain.name);
-        return;
+        return false;
     }
-}
-
-const checkContract = async function() {
-    checkChainId();
 
     let result = false;
     const farm = await FarmContract.getFarm(loginAddress);
+    console.log("farm level: ", farm.length);
     if (farm.length > 5) {
         result = true;
     } else {
@@ -31,6 +28,7 @@ const checkContract = async function() {
     }
 
     const balance = await TokenContract.balanceOf(loginAddress);
+    console.log("token balance: ", balance);
     if (balance > 0) {
         result = true;
     } else {
