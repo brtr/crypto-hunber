@@ -25,6 +25,7 @@ class OffersController < ApplicationController
     if history
       if history.taken?
         history.done!
+        AirdropTokenJob.perform_later(@offer.id, current_user.address, @offer.reward)
         flash[:notice] = "任务已完成"
       else
         flash[:alert] = "不能重复领取奖励"

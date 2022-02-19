@@ -20,6 +20,9 @@ gem 'kaminari'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'figaro'
+gem 'money-tree', git: 'https://github.com/GemHQ/money-tree.git'
+gem 'eth', '0.4.18'
+gem 'ethereum.rb', :git => "https://github.com/EthWorks/ethereum.rb.git", ref: "4a81fed12f0698627638f3e70acf05a261712b21"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
