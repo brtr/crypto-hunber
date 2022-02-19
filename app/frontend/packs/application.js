@@ -1,11 +1,12 @@
-import 'bootstrap/dist/js/bootstrap';
-import "bootstrap/dist/css/bootstrap";
-import { checkContract } from './sunflower';
-import { checkOrder } from './opensea';
 
 require("@rails/ujs").start();
 require("turbolinks").start();
 require("jquery");
+
+import 'bootstrap/dist/js/bootstrap';
+import "bootstrap/dist/css/bootstrap";
+import { checkContract } from './sunflower';
+import { checkOrder } from './opensea';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

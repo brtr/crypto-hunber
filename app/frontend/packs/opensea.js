@@ -1,19 +1,25 @@
+const server = NODE_ENV["MORALIS_SERVER"];
+const appId = NODE_ENV["MORALIS_APPID"];
+Moralis.start({ serverUrl: server, appId: appId });
+
+const openseaAddress = NODE_ENV["OPENSEA_ADDRESS"];
 const loginAddress = localStorage.getItem("loginAddress");
 
-const apiUrl = NODE_ENV["RARIBLE_API"];
-
 const checkOrder = async function() {
-    let result = false;
+    const options = { address: loginAddress, limit: 1000 };
+    const txs = await Moralis.Web3API.account.getTransactions(options);
 
-    $.get(apiUrl + loginAddress, function(data){
-        console.log("data: ", data);
+    if (txs.total > 0) {
+        const result = $.grep(txs.result, function(tx) {
+            return tx.from_address == loginAddress && tx.to_address == openseaAddress
+        })
 
-        if (data.orders.length > 0) {
-            result = true;
+        if (result.length > 0) {
+            return true;
         }
-    })
+    }
 
-    return result;
+    return false;
 
 }
 
