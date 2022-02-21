@@ -6,7 +6,8 @@ require("jquery");
 import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import { checkContract } from './sunflower';
-import { checkOrder } from './opensea';
+import { checkOpensea } from './opensea';
+import { checkSushiSwap } from './sushiswap';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -66,7 +67,10 @@ const checkOffer = async function(offerName) {
                 result = await checkContract();
                 break;
             case "Opensea":
-                result = await checkOrder();
+                result = await checkOpensea();
+                break;
+            case "Sushiswap":
+                result = await checkSushiSwap();
                 break;
             default:
                 result
@@ -115,6 +119,10 @@ $(document).on('turbolinks:load', function() {
                 }
             })
         });
+
+        $(".takeBtn").on("click", function() {
+            $("#spinner").removeClass("hide");
+        })
 
         $(".completeBtn").on("click", async function(e) {
             e.preventDefault();
