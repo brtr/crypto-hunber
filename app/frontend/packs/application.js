@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap";
 import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
 import { checkSushiSwap } from './sushiswap';
+import { checkENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -71,6 +72,9 @@ const checkOffer = async function(offerName) {
                 break;
             case "Sushiswap":
                 result = await checkSushiSwap();
+                break;
+            case "ENS":
+                result = await checkENS();
                 break;
             default:
                 result
