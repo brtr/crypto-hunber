@@ -2,36 +2,40 @@
   <h2>Offer Wall</h2>
   <div class="m-3 mt-5" id="task-list">
     <div id="coins-container">
-      <table class="table">
-        <thead>
-          <th>ID</th>
-          <th>任务状态</th>
-          <th>任务名称</th>
-          <th>任务内容</th>
-          <th>剩余领取次数</th>
-          <th>赏金</th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @offers.each do |offer| %>
-            <tr class="offer" data-id="<%= offer.id %>">
-              <td><%= offer.id %></td>
-              <td><%= offer.status %></td>
-              <td><%= offer.name %></td>
-              <td data-bs-toggle="tooltip" title="<%= offer.desc %>"><%= truncate(offer.desc) %></td>
-              <td><%= offer.count %></td>
-              <td><%= offer.reward %></td>
-              <td class="actions">
-                <% if current_user %>
-                  <% h = current_user.fetch_history(offer.id) %>
-                  <%= link_to "领取任务", take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
-                  <%= link_to "完成任务", "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="row">
+        <% @offers.each do |offer| %>
+          <div class="col-6 col-xs-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+            <div class="card" style="min-height:300px">
+              <div class="card-header">
+                <div class="card-title">
+                  <%= image_tag offer.logo, width: "100px" if offer.logo %>
+                  <span class="h-status text-right">
+                    <h4><%= offer.name %></h4>
+                    <% if current_user %>
+                      <% status = current_user.fetch_history_status(offer.id) %>
+                      <span class="text-<%= get_status_color(status) %>"><%= status %></span>
+                    <% end %>
+                    <br />
+                    <span><%= offer.display_num %></span>
+                  </span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-warning"><%= offer.status %></h6>
+                <p class="card-text"><%= offer.desc %></p>
+                <div class="actions">
+                  <% if current_user %>
+                    <% h = current_user.fetch_history(offer.id) %>
+                    <%= link_to "领取任务", take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
+                    <%= link_to "完成任务", "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
+                    <%= link_to "去官网", offer.website, class: "btn btn-warning", target: "_blank" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

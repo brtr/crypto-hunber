@@ -6,4 +6,15 @@ class User < ApplicationRecord
   def fetch_history(offer_id)
     offer_histories.where(offer_id: offer_id).take
   end
+
+  def fetch_history_status(offer_id)
+    h = fetch_history(offer_id)
+    if h&.taken?
+      "INCOMPLETE"
+    elsif h&.done?
+      "COMPLETE"
+    else
+      "NOT STARTED"
+    end
+  end
 end

@@ -159,6 +159,7 @@ $(document).on('turbolinks:load', function() {
         // detect Network account change
         ethereum.on('chainChanged', function(networkId){
             console.log('networkChanged',networkId);
+            location.reload();
         });
     });
 });
