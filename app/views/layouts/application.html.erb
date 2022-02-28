@@ -12,10 +12,10 @@
   </head>
 
   <body>
-     <%= render "layouts/notices" %>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
+          <h2>Offer Wall</h2>
           <div class="loginBtns">
             <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
             <div class="meta_dropdown hide">
@@ -32,6 +32,7 @@
       <div id="spinner" class="hide">
         <%= image_tag("loading.svg") %>
       </div>
+      <%= render "layouts/notices" %>
       <%= yield %>
     </div>
   </body>
