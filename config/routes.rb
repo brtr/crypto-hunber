@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :recommend_projects do
+    put :toggle_like, on: :member
+  end
+
   post 'login', to: "users#login", as: :login
   post 'logout', to: "users#logout", as: :logout
 end

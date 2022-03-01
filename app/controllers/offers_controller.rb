@@ -2,6 +2,7 @@ class OffersController < ApplicationController
   before_action :get_offer, only: [:take, :complete]
 
   def index
+    @page_index = 1
     @offers = Offer.order(created_at: :desc).page(params[:page]).per(20)
   end
 

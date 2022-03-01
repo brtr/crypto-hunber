@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :offer_histories
+  has_many :offer_histories, dependent: :destroy
+  has_many :recommend_projects, dependent: :destroy
+  has_many :user_like_projects, dependent: :destroy
 
   validates_uniqueness_of :address
 

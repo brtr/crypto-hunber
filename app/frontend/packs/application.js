@@ -1,9 +1,8 @@
-
 require("@rails/ujs").start();
 require("turbolinks").start();
 require("jquery");
 
-import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/js/bootstrap'
 import "bootstrap/dist/css/bootstrap";
 import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
@@ -100,6 +99,22 @@ const complete = function(offerId) {
     }
 }
 
+const toggleUserLike = function(projectId) {
+    try {
+        const url = "/recommend_projects/" + projectId + "/toggle_like";
+        $.ajax({
+            url: url,
+            method: "put"
+        }).done(function(data) {
+            if (data.success) {
+                location.reload();
+            }
+        })
+    } catch (err) {
+        fetchErrMsg(err);
+    }
+}
+
 $(document).on('turbolinks:load', function() {
   'use strict';
 
@@ -138,6 +153,22 @@ $(document).on('turbolinks:load', function() {
                 alert("任务未完成不能领取奖励!");
                 $("#spinner").addClass("hide");
             }
+        })
+
+        $(".likeBtn").on("click", function() {
+            $("#spinner").removeClass("hide");
+            toggleUserLike($(this).data("id"));
+        })
+
+        $(".getDesc").on("click", function(e) {
+            e.preventDefault();
+            const desc = $(this).data("desc");
+            $("#descModal .modal-body p").html(desc.replace(/\n/g, '<br />'));
+            $("#descModal").modal("show");
+        })
+
+        $(document).on("click", ".closeBtn", function() {
+            $("#descModal").modal("hide");
         })
 
         toggleAddress();

@@ -9,22 +9,37 @@
     <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <h2>Offer Wall</h2>
-          <div class="loginBtns">
-            <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
-            <div class="meta_dropdown hide">
-              <a href="#" role="button" class="dropdown-toggle" id="metaDropdownMenuLink" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                <span id="login_address"></span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="metaDropdownMenuLink">
-                <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
+          <div class="col-9 nav">
+            <div class="navbar-brand">Offer Wall</div>
+            <div class="navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="nav-item">
+                  <%= link_to "首页", offers_path, class: "nav-link #{@page_index == 1 ? 'active' : ''}" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "用户推荐项目", recommend_projects_path, class: "nav-link #{@page_index == 2 ? 'active' : ''}" %>
+                </li>
               </ul>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="loginBtns">
+              <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
+              <div class="meta_dropdown hide">
+                <a href="#" role="button" class="dropdown-toggle" id="metaDropdownMenuLink" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                  <span id="login_address"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="metaDropdownMenuLink">
+                  <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

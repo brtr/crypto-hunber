@@ -4,6 +4,6 @@ class Offer < ApplicationRecord
   enum status: [:avaliable, :disable]
 
   def display_num
-    "#{offer_histories.count} / #{count}"
+    "#{offer_histories.size} / #{count}"
   end
 end

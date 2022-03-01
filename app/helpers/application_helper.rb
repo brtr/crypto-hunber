@@ -13,4 +13,8 @@ module ApplicationHelper
       "secondary"
     end
   end
+
+  def check_project_liked(project_like_ids)
+    current_user.id.in?(project_like_ids)
+  end
 end
