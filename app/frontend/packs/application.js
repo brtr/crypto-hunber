@@ -1,9 +1,12 @@
 require("@rails/ujs").start();
 require("turbolinks").start();
 require("jquery");
+require("trix");
+require("@rails/actiontext");
 
-import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
+import Tagify from '@yaireo/tagify';
 import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
 import { checkSushiSwap } from './sushiswap';
@@ -172,6 +175,10 @@ $(document).on('turbolinks:load', function() {
         })
 
         toggleAddress();
+
+        new Tagify(document.getElementById('recommend_project_tag_list'), {
+            originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+        });
 
         // detect Metamask account change
         ethereum.on('accountsChanged', function (accounts) {

@@ -25,6 +25,8 @@ gem 'eth', '0.4.18'
 gem 'ethereum.rb', :git => "https://github.com/EthWorks/ethereum.rb.git", ref: "4a81fed12f0698627638f3e70acf05a261712b21"
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'image_processing'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

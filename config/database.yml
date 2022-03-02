@@ -5,6 +5,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
+  database: offerwall
   <<: *default
 
 test:

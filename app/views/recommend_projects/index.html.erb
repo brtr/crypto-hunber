@@ -11,14 +11,19 @@
                   <h4><%= project.name %></h4>
                   <span class="likesCount"><%= project.likes_count %></span>
                   <% if current_user %>
-                    <span class="likeBtn text-<%= check_project_liked(project.user_like_projects.pluck(:user_id)) ? "danger" : "secondary" %>" data-id="<%= project.id %>"><i class="bi bi-hand-thumbs-up"></i></span>
+                    <span class="likeBtn text-<%= check_project_liked(project.user_like_projects.pluck(:user_id)) ? "danger" : "secondary" %>" data-id="<%= project.id %>">
+                      <%= thumb_up_icon %>
+                    </span>
                   <% else %>
-                    <i class="bi bi-hand-thumbs-up"></i>
+                    <% thumb_up_icon %>
                   <% end %>
+                </div>
+                <div class="tags">
+                  <%= raw get_tags(project.tags) %>
                 </div>
               </div>
               <div class="card-body">
-                <p class="card-text"><%= truncate(project.desc, length: 200) { link_to "查看更多", "#", class: "getDesc", data: {desc: project.desc} } %></p>
+                <p class="card-text"><%= truncate(strip_tags(project.desc.to_s), length: 80) { link_to "查看更多", recommend_project_path(project) } %></p>
                 <div class="actions">
                   <%= link_to "去官网", project.website, class: "btn btn-warning", target: "_blank" %>
                   <% if current_user && project.user_id == current_user.id %>
@@ -34,22 +39,6 @@
     </div>
     <div class="paginationBox p-4">
       <%= paginate @projects %>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">项目详情</h5>
-      </div>
-      <div class="modal-body">
-        <p></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>

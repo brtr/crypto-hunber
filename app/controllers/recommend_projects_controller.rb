@@ -1,9 +1,9 @@
 class RecommendProjectsController < ApplicationController
-  before_action :get_project, only: [:edit, :update, :destroy, :toggle_like]
+  before_action :get_project, only: [:show, :edit, :update, :destroy, :toggle_like]
 
   def index
     @page_index = 2
-    @projects = RecommendProject.includes(:user_like_projects).order(created_at: :desc).page(params[:page]).per(10)
+    @projects = RecommendProject.includes(:user_like_projects, :tags).with_rich_text_desc_and_embeds.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -18,7 +18,10 @@ class RecommendProjectsController < ApplicationController
       flash[:alert] = project.errors.full_messages.join(', ')
     end
 
-    redirect_to recommend_projects_path
+    redirect_to recommend_project_path(@project)
+  end
+
+  def show
   end
 
   def edit
@@ -31,7 +34,7 @@ class RecommendProjectsController < ApplicationController
       flash[:alert] = @project.errors.full_messages.join(', ')
     end
 
-    redirect_to recommend_projects_path
+    redirect_to recommend_project_path(@project)
   end
 
   def destroy
@@ -62,6 +65,6 @@ class RecommendProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:recommend_project).permit(:name, :website, :desc)
+    params.require(:recommend_project).permit(:name, :website, :desc, :reason, :tag_list)
   end
 end
