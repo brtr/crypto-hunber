@@ -7,7 +7,7 @@
           <div class="col-6 col-xs-6 col-md-4 col-lg-4 col-xl-3 mb-5 project" data-id="<%= project.id %>">
             <div class="card" style="min-height:300px">
               <div class="card-header">
-                <div class="card-title">
+                <div class="card-title col-5">
                   <h4><%= project.name %></h4>
                   <span class="likesCount"><%= project.likes_count %></span>
                   <% if current_user %>
@@ -18,7 +18,7 @@
                     <% thumb_up_icon %>
                   <% end %>
                 </div>
-                <div class="tags">
+                <div class="tags col-7 text-right">
                   <%= raw get_tags(project.tags) %>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 class RecommendProjectsController < ApplicationController
-  before_action :get_project, only: [:show, :edit, :update, :destroy, :toggle_like]
+  before_action :get_project, except: [:new, :create, :index]
 
   def index
     @page_index = 2
@@ -18,10 +18,12 @@ class RecommendProjectsController < ApplicationController
       flash[:alert] = project.errors.full_messages.join(', ')
     end
 
-    redirect_to recommend_project_path(@project)
+    redirect_to recommend_project_path(project)
   end
 
   def show
+    @comment = @project.comments.new
+    @comments = @project.comments.includes(:user).with_rich_text_content_and_embeds.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def edit

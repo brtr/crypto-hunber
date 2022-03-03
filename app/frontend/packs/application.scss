@@ -64,8 +64,6 @@
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.tags {
-  position: absolute;
-  top: .5rem;
-  right: .5rem;
+.card-header {
+  display:flex;
 }
