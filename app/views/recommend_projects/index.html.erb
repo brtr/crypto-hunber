@@ -1,41 +1,44 @@
-<div id="projects">
-  <div class="m-3 mt-5">
-    <%= link_to "新增推荐项目", new_recommend_project_path, class: "btn btn-primary mb-5" if current_user %>
-    <div id="coins-container">
-      <div class="row" id="project-list">
-        <% @projects.each do |project| %>
-          <div class="col-6 col-xs-6 col-md-4 col-lg-4 col-xl-3 mb-5 project" data-id="<%= project.id %>">
-            <div class="card" style="min-height:300px">
-              <div class="card-header">
-                <div class="card-title col-5">
-                  <h4><%= project.name %></h4>
-                  <span class="likesCount"><%= project.likes_count %></span>
-                  <% if current_user %>
-                    <span class="likeBtn text-<%= check_project_liked(project.user_like_projects.pluck(:user_id)) ? "danger" : "secondary" %>" data-id="<%= project.id %>">
-                      <%= thumb_up_icon %>
-                    </span>
-                  <% else %>
-                    <% thumb_up_icon %>
-                  <% end %>
-                </div>
-                <div class="tags col-7 text-right">
-                  <%= raw get_tags(project.tags) %>
-                </div>
+<div class="container py-4 mb-2 mb-sm-0 pb-sm-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <% @projects.each do |project| %>
+        <article class="card card-horizontal card-hover mb-grid-gutter">
+          <%= image_tag get_logo(project.logo_url), class: "card-img-top" %>
+          <div class="card-body">
+            <h2 class="h3 nav-heading mb-4">
+              <%= link_to project.name, recommend_project_path(project) %>
+            </h2>
+            <a class="d-flex meta-link fs-sm align-items-center pt-3" href="#">
+              <div class="ps-2 mt-n1">
+                by<span class="fw-semibold ms-1"><%= project.user.address %></span>
               </div>
-              <div class="card-body">
-                <p class="card-text"><%= truncate(strip_tags(project.desc.to_s), length: 80) { link_to "查看更多", recommend_project_path(project) } %></p>
-                <div class="actions">
-                  <%= link_to "去官网", project.website, class: "btn btn-warning", target: "_blank" %>
-                  <% if current_user && project.user_id == current_user.id %>
-                    <%= link_to "编辑", edit_recommend_project_path(project), class: "btn btn-success" %>
-                    <%= link_to "删除", recommend_project_path(project), method: :delete, class: "btn btn-danger", data: { confirm: "确定要删除吗，删除后不可恢复?" } %>
-                  <% end %>
-                </div>
-              </div>
+            </a>
+            <div class="mt-3 text-end text-nowrap">
+              <a class="meta-link fs-xs" href="#">
+                <i class="ai-message-square me-1"></i>&nbsp;<%= project.comments.size %>
+              </a>
+              <span class="meta-divider"></span>
+              <a class="meta-link fs-xs" href="#">
+                <i class="ai-calendar me-1 mt-n1"></i>&nbsp;<%= date_format project.created_at %>
+              </a>
+            </div>
+            <% if current_user %>
+            <span class="likeBtn text-<%= check_project_liked(project.user_like_projects.pluck(:user_id)) ? "danger" : "secondary" %>" data-id="<%= project.id %>">
+              <i class="ai-thumbs-up fs-lg opacity-60 mb-1"></i>
+            </span>
+            <% else %>
+              <i class="ai-thumbs-up fs-lg opacity-60 mb-1"></i>
+            <% end %>
+            <span class="likesCount me-5"><%= project.likes_count %></span>
+            <%= link_to project.website, target: "_blank" do %>
+              <i class="ai-log-out fs-lg opacity-60"></i>
+            <% end %>
+            <div class="tags">
+              <%= raw get_tags(project.tags) %>
             </div>
           </div>
-        <% end %>
-      </div>
+        </article>
+      <% end %>
     </div>
     <div class="paginationBox p-4">
       <%= paginate @projects %>

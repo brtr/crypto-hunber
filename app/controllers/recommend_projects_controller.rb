@@ -7,6 +7,7 @@ class RecommendProjectsController < ApplicationController
   end
 
   def new
+    @page_index = 2
     @project = RecommendProject.new
   end
 
@@ -54,8 +55,10 @@ class RecommendProjectsController < ApplicationController
 
     if result
       result.delete
+      @project.user.point.change_point(-1, "dislike")
     else
-      @project.user_like_projects.where(user_id: current_user.id).first_or_create
+      @project.user_like_projects.create(user_id: current_user.id)
+      @project.user.point.change_point(1, "like")
     end
 
     render json: {success: true}
@@ -67,6 +70,6 @@ class RecommendProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:recommend_project).permit(:name, :website, :desc, :reason, :tag_list)
+    params.require(:recommend_project).permit(:name, :website, :desc, :reason, :tag_list, :logo)
   end
 end

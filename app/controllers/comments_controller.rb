@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if project
       comment = project.comments.new(comment_params)
       if comment.save
-        flash[:notice] = "创建成功"
+        flash[:notice] = "添加评论成功"
       else
         flash[:alert] = comment.errors.full_messages.join(', ')
       end

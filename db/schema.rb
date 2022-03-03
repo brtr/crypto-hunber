@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_02_120710) do
+ActiveRecord::Schema.define(version: 2022_03_03_090936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_03_02_120710) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "reason"
+    t.string "logo"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -131,6 +132,26 @@ ActiveRecord::Schema.define(version: 2022_03_02_120710) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "recommend_project_id"], name: "index_user_like_projects_on_user_id_and_recommend_project_id", unique: true
+  end
+
+  create_table "user_point_histories", force: :cascade do |t|
+    t.integer "user_point_id"
+    t.integer "user_id"
+    t.integer "source"
+    t.integer "point"
+    t.text "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_point_id", "user_id"], name: "index_user_point_histories_on_user_point_id_and_user_id"
+  end
+
+  create_table "user_points", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "total_points", default: 0
+    t.integer "usable_points", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_points_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

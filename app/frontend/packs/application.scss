@@ -1,12 +1,11 @@
 @import "bootstrap";
 @import "@yaireo/tagify/src/tagify.scss";
+@import "simplebar/dist/simplebar.css";
+@import "tiny-slider/dist/tiny-slider.css";
+@import "../css/theme.min.css";
 
 #offers {
   margin: 1rem;
-}
-
-.loginBtns {
-  text-align: right;
 }
 
 .hide {display: none;}
@@ -22,7 +21,7 @@
   margin-top: 1rem;
 }
 
-.actions {
+.tags {
   position: absolute;
   bottom: 1rem;
 }

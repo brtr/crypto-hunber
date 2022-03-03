@@ -24,12 +24,12 @@ const fetchErrMsg = function(err) {
 const toggleAddress = function() {
     if(loginAddress) {
         $("#login_address").text(loginAddress);
-        $(".loginBtns .meta_dropdown").removeClass("hide");
+        $(".loginBtns .dropdown").removeClass("hide");
         $(".loginBtns .btn").addClass("hide");
         $(".actions").removeClass("hide");
     } else {
         $(".actions").addClass("hide");
-        $(".loginBtns .meta_dropdown").addClass("hide");
+        $(".loginBtns .dropdown").addClass("hide");
         $(".loginBtns .btn").removeClass("hide");
     }
 }
@@ -124,7 +124,9 @@ $(document).on('turbolinks:load', function() {
     $(function() {
         $('[data-bs-toggle="tooltip"]').tooltip({html: true});
 
-        $("#btn-login").on("click", function(){
+        $("#btn-login").on("click", function(e){
+            e.preventDefault();
+            console.log("hello");
             checkLogin();
         });
 

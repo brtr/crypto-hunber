@@ -13,42 +13,60 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <div class="col-9 nav">
-            <div class="navbar-brand">Offer Wall</div>
-            <div class="navbar-collapse">
-              <ul class="nav navbar-nav">
+    <main class="page-wrapper">
+      <div id="spinner" class="hide">
+        <%= image_tag("loading.svg") %>
+      </div>
+      <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-shadow navbar-sticky" data-scroll-header data-fixed-element>
+        <div class="container px-0 px-xl-3">
+          <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- <a class="navbar-brand flex-shrink-0 order-lg-1 mx-auto ms-lg-0 pe-lg-2 me-lg-4" href="index.html">
+            <img class="d-none d-lg-block" src="img/logo/logo-dark.png" alt="Around" width="153">
+            <img class="d-lg-none" src="img/logo/logo-icon.png" alt="Around" width="58">
+          </a> -->
+          <h3 style="min-width:10rem;">Offer Wall</h3>
+          <div class="d-flex align-items-center order-lg-3 ms-lg-auto loginBtns">
+            <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
+            <div class="navbar-tool dropdown hide">
+              <a href="#" role="button" class="navbar-tool-label dropdown-toggle">
+                <span id="login_address"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
+            <div class="offcanvas-header navbar-shadow">
+              <h5 class="mt-1 mb-0">Menu</h5>
+              <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <!-- Menu-->
+              <ul class="navbar-nav">
                 <li class="nav-item">
                   <%= link_to "首页", offers_path, class: "nav-link #{@page_index == 1 ? 'active' : ''}" %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "用户推荐项目", recommend_projects_path, class: "nav-link #{@page_index == 2 ? 'active' : ''}" %>
+                <li class="nav-item dropdown">
+                  <%= link_to "用户推荐项目", '#', class: "nav-link dropdown-toggle #{@page_index == 2 ? 'active' : ''}", data: {"bs-toggle": "dropdown"} %>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown">
+                      <%= link_to "推荐项目列表", recommend_projects_path, class: "dropdown-item" %>
+                    </li>
+                    <li class="dropdown">
+                      <%= link_to "新增推荐项目", new_recommend_project_path, class: "dropdown-item" if current_user %>
+                    </li>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="col-3">
-            <div class="loginBtns">
-              <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
-              <div class="meta_dropdown hide">
-                <a href="#" role="button" class="dropdown-toggle" id="metaDropdownMenuLink" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <span id="login_address"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="metaDropdownMenuLink">
-                  <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
-      </nav>
-      <div id="spinner" class="hide">
-        <%= image_tag("loading.svg") %>
-      </div>
+      </header>
       <%= render "layouts/notices" %>
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>
