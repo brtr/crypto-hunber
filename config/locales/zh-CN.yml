@@ -199,6 +199,7 @@ zh-CN:
       recommend_reason: 推荐理由
       comments: 评论
       metamask_connect: 用metamask登录
+      language: 语言
     action:
       submit: 提交
       cancel: 取消

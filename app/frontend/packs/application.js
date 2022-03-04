@@ -24,12 +24,12 @@ const fetchErrMsg = function(err) {
 const toggleAddress = function() {
     if(loginAddress) {
         $("#login_address").text(loginAddress);
-        $(".loginBtns .dropdown").removeClass("hide");
+        $(".loginBtns .navbar-tool").removeClass("hide");
         $(".loginBtns .btn").addClass("hide");
         $(".actions").removeClass("hide");
     } else {
         $(".actions").addClass("hide");
-        $(".loginBtns .dropdown").addClass("hide");
+        $(".loginBtns .navbar-tool").addClass("hide");
         $(".loginBtns .btn").removeClass("hide");
     }
 }

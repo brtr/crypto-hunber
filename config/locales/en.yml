@@ -226,13 +226,14 @@ en:
       home: Home
       recommend_projects: Recommend Projects
       projects_list: Projects List
-      add_project: Add Project
+      add_project: Submit Project
       edit_project: Edit Project
     label:
       recommender: Recommender
       recommend_reason: Recommend Reason
       comments: Comments
       metamask_connect: Connect Metamask
+      language: Language
     action:
       submit: Submit
       cancel: Cancel

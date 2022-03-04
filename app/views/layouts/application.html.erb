@@ -18,7 +18,7 @@
         <%= image_tag("loading.svg") %>
       </div>
       <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-shadow navbar-sticky" data-scroll-header data-fixed-element>
-        <div class="container px-0 px-xl-3">
+        <div class="container px-0 px-xl-2">
           <button class="navbar-toggler ms-n2 me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,27 +32,27 @@
                 <span id="login_address"></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <% if session[:locale] == "zh-CN" %>
-                  <li>
-                    <%= link_to "?locale=en", class: "dropdown-item" do %>
-                      <i class="ai-globe fs-base me-2"></i>
-                      English
-                    <% end %>
-                  </li>
-                <% else %>
-                  <li>
-                    <%= link_to "?locale=zh-CN", class: "dropdown-item" do %>
-                      <i class="ai-globe fs-base me-2"></i>
-                      中文
-                    <% end %>
-                  </li>
-                <% end %>
                 <li>
                   <%= link_to "#", class: "dropdown-item", id: "btn-logout" do %>
                     <i class="ai-log-out fs-base me-2"></i>
                     <%= t("views.action.logout") %>
                   <% end %>
                 </li>
+              </ul>
+            </div>
+            <div class="ms-3 dropdown language">
+              <i class="ai-globe fs-base me-2"></i>
+              <small><%= t("views.label.language") %></small>
+              <ul class="dropdown-menu dropdown-menu-end text-end">
+                <% if session[:locale] == "zh-CN" %>
+                  <li>
+                    <%= link_to "English", "?locale=en", class: "dropdown-item" %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "中文", "?locale=zh-CN", class: "dropdown-item" %>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>

@@ -1,19 +1,21 @@
-<div id="offers">
-  <div class="m-3 mt-5" id="task-list">
-    <div id="coins-container">
+<div class="container py-4 mb-2 mb-sm-0 pb-sm-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
       <div class="row">
         <% @offers.each do |offer| %>
-          <div class="col-6 col-xs-6 col-md-4 col-lg-4 col-xl-3 mb-5">
+          <div class="col-4 mb-5">
             <div class="card" style="min-height:300px">
               <div class="card-header">
                 <div class="card-title">
                   <%= image_tag offer.logo, width: "100px" if offer.logo %>
-                  <span class="h-status text-right">
+                  <span class="p-right text-right">
                     <h4><%= link_to offer.name, offer.website, target: "_blank" %></h4>
                     <% if current_user %>
                       <% result = current_user.fetch_history_status(offer.id) %>
                       <span class="text-<%= get_status_color(result[:id]) %>"><%= result[:text].upcase %></span>
                     <% end %>
+                    <br />
+                    <span><span class="text-info"><%= offer.reward.to_i %></span> XP</span>
                     <br />
                     <span><%= offer.display_num %></span>
                   </span>
@@ -21,7 +23,7 @@
               </div>
               <div class="card-body">
                 <p class="card-text"><%= offer.desc %></p>
-                <div class="actions">
+                <div class="p-bottom">
                   <% if current_user %>
                     <% h = current_user.fetch_history(offer.id) %>
                     <%= link_to t("views.action.take"), take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
