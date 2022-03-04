@@ -5,12 +5,12 @@ module ApplicationHelper
 
   def get_status_color(status)
     case status
-    when "COMPLETE"
+    when 2
       "success"
-    when "INCOMPLETE"
+    when 1
       "danger"
     else
-      "secondary"
+      "default"
     end
   end
 
@@ -35,6 +35,6 @@ module ApplicationHelper
   end
 
   def get_logo(logo_url)
-    logo_url || "placeholder.png"
+    logo_url || asset_url("placeholder.png")
   end
 end

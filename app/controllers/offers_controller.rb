@@ -12,9 +12,9 @@ class OffersController < ApplicationController
       history.taken!
       @offer.count -= 1
       @offer.save
-      flash[:notice] = "任务已领取"
+      flash[:notice] = t("views.notice.offer_take")
     else
-      flash[:alert] = "不能重复领取任务"
+      flash[:alert] = t("views.error.duplicate_take")
     end
 
     redirect_to offers_path
@@ -27,12 +27,12 @@ class OffersController < ApplicationController
       if history.taken?
         history.done!
         AirdropTokenJob.perform_later(@offer.id, current_user.address, @offer.reward)
-        flash[:notice] = "任务已完成"
+        flash[:notice] = t("views.notice.offer_complete")
       else
-        flash[:alert] = "不能重复领取奖励"
+        flash[:alert] = t("views.error.duplicate_complete")
       end
     else
-      flash[:alert] = "您还没有领取任务，不能领取奖励"
+      flash[:alert] = t("views.error.no_taken")
     end
 
     redirect_to offers_path

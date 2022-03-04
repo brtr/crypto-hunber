@@ -28,35 +28,54 @@
           </a> -->
           <h3 style="min-width:10rem;">Offer Wall</h3>
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto loginBtns">
-            <%= button_tag('用metamask登录', class: "btn btn-warning", id: "btn-login") %>
+            <%= button_tag(t("views.label.metamask_connect"), class: "btn btn-warning", id: "btn-login") %>
             <div class="navbar-tool dropdown hide">
-              <a href="#" role="button" class="navbar-tool-label dropdown-toggle">
+              <a href="#" role="button" class="navbar-tool-label">
                 <span id="login_address"></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><%= button_tag('登出', class: "dropdown-item", id: "btn-logout") %></li>
+                <% if session[:locale] == "zh-CN" %>
+                  <li>
+                    <%= link_to "?locale=en", class: "dropdown-item" do %>
+                      <i class="ai-globe fs-base me-2"></i>
+                      English
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "?locale=zh-CN", class: "dropdown-item" do %>
+                      <i class="ai-globe fs-base me-2"></i>
+                      中文
+                    <% end %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to "#", class: "dropdown-item", id: "btn-logout" do %>
+                    <i class="ai-log-out fs-base me-2"></i>
+                    <%= t("views.action.logout") %>
+                  <% end %>
+                </li>
               </ul>
             </div>
           </div>
           <div class="offcanvas offcanvas-collapse order-lg-2" id="primaryMenu">
             <div class="offcanvas-header navbar-shadow">
-              <h5 class="mt-1 mb-0">Menu</h5>
               <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <!-- Menu-->
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <%= link_to "首页", offers_path, class: "nav-link #{@page_index == 1 ? 'active' : ''}" %>
+                  <%= link_to t("views.title.home"), offers_path, class: "nav-link #{@page_index == 1 ? 'active' : ''}" %>
                 </li>
                 <li class="nav-item dropdown">
-                  <%= link_to "用户推荐项目", '#', class: "nav-link dropdown-toggle #{@page_index == 2 ? 'active' : ''}", data: {"bs-toggle": "dropdown"} %>
+                  <%= link_to t("views.title.recommend_projects"), '#', class: "nav-link dropdown-toggle #{@page_index == 2 ? 'active' : ''}", data: {"bs-toggle": "dropdown"} %>
                   <ul class="dropdown-menu">
                     <li class="dropdown">
-                      <%= link_to "推荐项目列表", recommend_projects_path, class: "dropdown-item" %>
+                      <%= link_to t("views.title.projects_list"), recommend_projects_path, class: "dropdown-item" %>
                     </li>
                     <li class="dropdown">
-                      <%= link_to "新增推荐项目", new_recommend_project_path, class: "dropdown-item" if current_user %>
+                      <%= link_to t("views.title.add_project"), new_recommend_project_path, class: "dropdown-item" if current_user %>
                     </li>
                   </div>
                 </li>

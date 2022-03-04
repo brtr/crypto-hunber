@@ -182,6 +182,11 @@ $(document).on('turbolinks:load', function() {
             originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
         });
 
+        $("#recommend_project_logo").on("change", function(e) {
+            const filename = e.target.files[0].name;
+            $("#upload_label span").html(filename + "<i class='ai-check me-1 align-vertical'></i>");
+        })
+
         // detect Metamask account change
         ethereum.on('accountsChanged', function (accounts) {
             console.log('accountsChanges',accounts);

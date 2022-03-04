@@ -13,11 +13,20 @@ class User < ApplicationRecord
   def fetch_history_status(offer_id)
     h = fetch_history(offer_id)
     if h&.taken?
-      "INCOMPLETE"
+      {
+        text: I18n.t("views.offer_status.incomplete"),
+        id: 1
+      }
     elsif h&.done?
-      "COMPLETE"
+      {
+        text: I18n.t("views.offer_status.complete"),
+        id: 2
+      }
     else
-      "NOT STARTED"
+      {
+        text: I18n.t("views.offer_status.not_started"),
+        id: 0
+      }
     end
   end
 

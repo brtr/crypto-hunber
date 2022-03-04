@@ -1,32 +1,35 @@
 <div class="row">
   <%= form_for @project do |f| %>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :logo, "项目头图*", class: "form-label px-0" %>
-      <%= f.file_field :logo, class: "form-control", required: true %>
+      <%= f.label :logo, class: "form-label px-0" %>
+      <label class="btn btn-light form-control shadow btn-sm mb-2" id="upload_label">
+        <span><%= t("views.action.upload") %></span>
+        <%= f.file_field :logo, class: "hide" %>
+      </label>
     </div>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :name, "项目名称*", class: "form-label px-0" %>
+      <%= f.label :name, class: "form-label px-0" %>
       <%= f.text_field :name, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :website, "项目地址*", class: "form-label px-0" %>
+      <%= f.label :website, class: "form-label px-0" %>
       <%= f.text_field :website, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :reason, "推荐理由*", class: "form-label px-0" %>
+      <%= f.label :reason, class: "form-label px-0" %>
       <%= f.text_field :reason, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :tag_list, "标签*", class: "form-label px-0" %>
+      <%= f.label :tag_list, class: "form-label px-0" %>
       <%= f.text_field :tag_list, value: f.object.tag_list.to_s, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-sm-6">
-      <%= f.label :desc, "项目描述*", class: "form-label px-0" %>
+      <%= f.label :desc, class: "form-label px-0" %>
       <%= f.rich_text_area :desc, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-4">
-      <%= f.submit "提交", class: 'btn btn-primary mt-3 mt-sm-0' %>
-      <%= link_to '取消', recommend_projects_path, class: 'btn btn-default' %>
+      <%= f.submit t("views.action.submit"), class: 'btn btn-primary mt-3 mt-sm-0' %>
+      <%= link_to t("views.action.cancel"), recommend_projects_path, class: 'btn btn-default' %>
     </div>
   <% end %>
 </div>

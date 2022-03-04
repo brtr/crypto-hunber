@@ -14,7 +14,7 @@ class RecommendProjectsController < ApplicationController
   def create
     project = current_user.recommend_projects.new(project_params)
     if project.save
-      flash[:notice] = "创建成功"
+      flash[:notice] = t("views.notice.project_create")
     else
       flash[:alert] = project.errors.full_messages.join(', ')
     end
@@ -32,7 +32,7 @@ class RecommendProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:notice] = "更新成功"
+      flash[:notice] = t("views.notice.project_update")
     else
       flash[:alert] = @project.errors.full_messages.join(', ')
     end
@@ -42,7 +42,7 @@ class RecommendProjectsController < ApplicationController
 
   def destroy
     if @project.destroy
-      flash[:notice] = "删除成功"
+      flash[:notice] = t("views.notice.project_delete")
     else
       flash[:alert] = @project.errors.full_messages.join(', ')
     end

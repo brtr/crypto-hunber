@@ -9,10 +9,10 @@
                 <div class="card-title">
                   <%= image_tag offer.logo, width: "100px" if offer.logo %>
                   <span class="h-status text-right">
-                    <h4><%= offer.name %></h4>
+                    <h4><%= link_to offer.name, offer.website, target: "_blank" %></h4>
                     <% if current_user %>
-                      <% status = current_user.fetch_history_status(offer.id) %>
-                      <span class="text-<%= get_status_color(status) %>"><%= status %></span>
+                      <% result = current_user.fetch_history_status(offer.id) %>
+                      <span class="text-<%= get_status_color(result[:id]) %>"><%= result[:text].upcase %></span>
                     <% end %>
                     <br />
                     <span><%= offer.display_num %></span>
@@ -20,14 +20,12 @@
                 </div>
               </div>
               <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-warning"><%= offer.status %></h6>
                 <p class="card-text"><%= offer.desc %></p>
                 <div class="actions">
                   <% if current_user %>
                     <% h = current_user.fetch_history(offer.id) %>
-                    <%= link_to "领取任务", take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
-                    <%= link_to "完成任务", "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
-                    <%= link_to "去官网", offer.website, class: "btn btn-warning", target: "_blank" %>
+                    <%= link_to t("views.action.take"), take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
+                    <%= link_to t("views.action.complete"), "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
                   <% end %>
                 </div>
               </div>

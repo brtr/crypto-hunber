@@ -5,14 +5,14 @@ class CommentsController < ApplicationController
     if project
       comment = project.comments.new(comment_params)
       if comment.save
-        flash[:notice] = "添加评论成功"
+        flash[:notice] = t("views.notice.add_comment")
       else
         flash[:alert] = comment.errors.full_messages.join(', ')
       end
   
       redirect_to recommend_project_path(project)
     else
-      flash[:alert] = "找不到对应的推荐项目"
+      flash[:alert] = t("views.error.no_project")
       redirect_to recommend_projects_path
     end
   end
