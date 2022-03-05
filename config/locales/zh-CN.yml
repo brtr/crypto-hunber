@@ -194,12 +194,18 @@ zh-CN:
       projects_list: 推荐项目列表
       add_project: 添加推荐项目
       edit_project: 修改推荐项目
+      offer_desc: Offer 详情
     label:
       recommender: 推荐人
       recommend_reason: 推荐理由
       comments: 评论
       metamask_connect: 用metamask登录
       language: 语言
+      unchecked_projects: 未审核项目
+      account: 个人页面
+      total_points: 累积积分
+      usable_points: 可用积分
+      more: 更多
     action:
       submit: 提交
       cancel: 取消
@@ -210,6 +216,8 @@ zh-CN:
       complete: 完成任务
       add_comment: 添加评论
       upload: 上传
+      check: 审核通过
+      close: 关闭
     notice:
       offer_take: 任务已领取
       offer_complete: 任务已完成
@@ -218,11 +226,13 @@ zh-CN:
       project_delete: 删除成功
       delete_confirmation: 确定要删除吗，删除后不可恢复？
       add_comment: 添加评论成功
+      project_check: 审核成功
     error:
       duplicate_take: 不能重复领取任务
       duplicate_complete: 不能重复领取奖励
       no_taken: 您还没有领取任务，不能领取奖励
       no_project: 找不到对应的推荐项目
+      no_user: 您还没登录，不能查看该页面
     offer_status:
       not_started: 未领取
       incomplete: 未完成

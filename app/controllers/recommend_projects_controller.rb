@@ -1,9 +1,9 @@
 class RecommendProjectsController < ApplicationController
-  before_action :get_project, except: [:new, :create, :index]
+  before_action :get_project, except: [:new, :create, :index, :unchecked_projects]
 
   def index
     @page_index = 2
-    @projects = RecommendProject.includes(:user_like_projects, :tags).with_rich_text_desc_and_embeds.order(created_at: :desc).page(params[:page]).per(10)
+    @projects = RecommendProject.approved.includes(:user_like_projects, :tags).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -62,6 +62,20 @@ class RecommendProjectsController < ApplicationController
     end
 
     render json: {success: true}
+  end
+
+  def unchecked_projects
+    @projects = RecommendProject.submitted.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def check
+    if @project.approved!
+      flash[:notice] = t("views.notice.project_check")
+    else
+      flash[:alert] = @project.errors.full_messages.join(', ')
+    end
+
+    redirect_to unchecked_projects_recommend_projects_path
   end
 
   private

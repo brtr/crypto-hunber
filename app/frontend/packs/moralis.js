@@ -22,14 +22,19 @@ const checkOrder = async function(addresses) {
 
 }
 
-const checkENS = async function() {
+const getENS = async function() {
     try {
-        await Moralis.Web3API.resolve.resolveAddress({address: loginAddress});
-        return true;
+        const ens = await Moralis.Web3API.resolve.resolveAddress({address: loginAddress});
+        return ens.name;
     } catch(err) {
         console.log("error: ", err);
-        return false;
+        return "";
     }
 }
 
-export { checkOrder, checkENS };
+const checkENS = async function() {
+    const ens = await getENS();
+    return ens.length > 0
+}
+
+export { checkOrder, getENS, checkENS };

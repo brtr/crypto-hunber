@@ -1,9 +1,19 @@
 class OffersController < ApplicationController
-  before_action :get_offer, only: [:take, :complete]
+  before_action :get_offer, except: :index
 
   def index
     @page_index = 1
     @offers = Offer.order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+  def update
+    if @offer.update(offer_params)
+      flash[:notice] = t("views.notice.project_update")
+    else
+      flash[:alert] = @offers.errors.full_messages.join(', ')
+    end
+
+    redirect_to offers_path
   end
 
   def take
@@ -42,5 +52,9 @@ class OffersController < ApplicationController
   def get_offer
     @offer = Offer.find params[:id]
     @histories = @offer.offer_histories.where(user_id: current_user.id)
+  end
+
+  def offer_params
+    params.require(:offer).permit(:desc, :count)
   end
 end

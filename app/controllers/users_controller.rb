@@ -11,4 +11,12 @@ class UsersController < ApplicationController
 
     render json: {success: true}
   end
+
+  def show
+    if current_user
+      @projects = current_user.recommend_projects.includes(:tags).with_rich_text_desc_and_embeds.order(created_at: :desc).page(params[:page]).per(10)
+    else
+      redirect_to root_path, alert: t("views.error.no_user")
+    end
+  end
 end

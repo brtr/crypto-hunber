@@ -32,6 +32,22 @@
                 <span id="login_address"></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
+                <% if is_admin? %>
+                  <li>
+                    <%= link_to unchecked_projects_recommend_projects_path, class: "dropdown-item" do %>
+                      <i class="ai-clipboard fs-base me-2"></i>
+                      <%= t("views.label.unchecked_projects") %>
+                    <% end %>
+                  </li>
+                <% end %>
+                <% if current_user %>
+                  <li>
+                    <%= link_to user_path(current_user), class: "dropdown-item" do %>
+                      <i class="ai-user fs-base me-2"></i>
+                      <%= t("views.label.account") %>
+                    <% end %>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to "#", class: "dropdown-item", id: "btn-logout" do %>
                     <i class="ai-log-out fs-base me-2"></i>

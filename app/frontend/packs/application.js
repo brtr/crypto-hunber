@@ -10,7 +10,7 @@ import Tagify from '@yaireo/tagify';
 import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
 import { checkSushiSwap } from './sushiswap';
-import { checkENS } from './moralis';
+import { checkENS, getENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -118,6 +118,16 @@ const toggleUserLike = function(projectId) {
     }
 }
 
+const fetchEnsName = async function() {
+    const name = await getENS();
+    if (name) {
+        $("#ens").text(name);
+        $("#ensBlock").removeClass("hide");
+    } else {
+        $("#ensBlock").addClass("hide");
+    }
+}
+
 $(document).on('turbolinks:load', function() {
   'use strict';
 
@@ -186,6 +196,20 @@ $(document).on('turbolinks:load', function() {
             const filename = e.target.files[0].name;
             $("#upload_label span").html(filename + "<i class='ai-check me-1 align-vertical'></i>");
         })
+
+        $(document).on("click", ".editOfferBtn", function(e) {
+            e.preventDefault();
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            $("#editForm").attr("action", "/offers/" + $(this).data("id"));
+            $("#editForm").find("#offer_count").val($(this).data("count"));
+            $("#editForm").find("#offer_desc").val($(this).data("desc"));
+            $("#editForm").find("input[name='authenticity_token']").val(token);
+            $("#editOfferModal").modal("show");
+        })
+
+        if ($("#userProfile").length > 0) {
+            fetchEnsName();
+        }
 
         // detect Metamask account change
         ethereum.on('accountsChanged', function (accounts) {

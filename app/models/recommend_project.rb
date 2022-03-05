@@ -7,11 +7,20 @@ class RecommendProject < ApplicationRecord
 
   acts_as_taggable_on :tags
 
+  before_create :set_status
+
+  enum status: [:submitted, :approved]
+
   def likes_count
     user_like_projects.size
   end
 
   def logo_url
     logo.attachment.service_url rescue nil
+  end
+
+  private
+  def set_status
+    self.status = "submitted"
   end
 end

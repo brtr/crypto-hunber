@@ -22,12 +22,13 @@
                 </div>
               </div>
               <div class="card-body">
-                <p class="card-text"><%= offer.desc %></p>
+                <p class="card-text"><%= truncate(offer.desc){ link_to t("views.label.more"), "#", class: "getDesc", data: {desc: offer.desc} } %></p>
                 <div class="p-bottom">
                   <% if current_user %>
                     <% h = current_user.fetch_history(offer.id) %>
                     <%= link_to t("views.action.take"), take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
                     <%= link_to t("views.action.complete"), "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
+                    <%= link_to t("views.action.edit"), "#", class: "btn btn-default editOfferBtn", data: {id: offer.id, desc: offer.desc, count: offer.count} if is_admin? %>
                   <% end %>
                 </div>
               </div>
@@ -38,6 +39,45 @@
     </div>
     <div class="paginationBox p-4">
       <%= paginate @offers %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editOfferModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t("views.title.offer_edit") %></h5>
+      </div>
+      <%= form_with scope: :offer, method: :put, id: "editForm" do |f| %>
+        <div class="modal-body">
+          <div class="field mb-4">
+            <%= f.number_field :count, class: "input-sm form-control" %>
+          </div>
+          <div class="field mb-4">
+            <%= f.text_area :desc, class: "input-sm form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit t("views.action.submit"), class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t("views.title.offer_desc") %></h5>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closeBtn" data-dismiss="modal"><%= t("views.action.close") %></button>
+      </div>
     </div>
   </div>
 </div>

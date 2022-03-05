@@ -234,6 +234,8 @@ en:
       comments: Comments
       metamask_connect: Connect Metamask
       language: Language
+      unchecked_projects: Unchecked Projects
+      account: Profile
     action:
       submit: Submit
       cancel: Cancel
@@ -243,9 +245,10 @@ en:
     notice:
       offer_take: Offer is taken
       offer_complete: Offer is completed
-      project_create: "Project is created"
-      project_update: "Project is updated"
-      project_delete: "Project is deleted"
+      project_create: Project is created
+      project_update: Project is updated
+      project_delete: Project is deleted
+      project_check: Project is checked
       delete_confirmation: Are you sure you want to delete it? You can't restore after you delete it.
       add_comment: Posting Success
     error:
@@ -253,6 +256,7 @@ en:
       duplicate_complete: Offer is already completed
       no_taken: You don't have this offer yet
       no_project: This project is invalid
+      no_user: Please login
     offer_status:
       not_started: Not Started
       incomplete: Incomplete
