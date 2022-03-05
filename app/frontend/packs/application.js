@@ -15,6 +15,14 @@ import { checkENS, getENS } from './moralis';
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+function replaceChar(origString, firstIdx, lastIdx, replaceChar) {
+    let firstPart = origString.substr(0, firstIdx);
+    let lastPart = origString.substr(lastIdx);
+
+    let newString = firstPart + replaceChar + lastPart;
+    return newString;
+}
+
 const fetchErrMsg = function(err) {
     const errMsg = err.error ? err.error.message : err.message;
     alert('Error:  ' + errMsg.split(": ")[1]);
@@ -23,7 +31,7 @@ const fetchErrMsg = function(err) {
 
 const toggleAddress = function() {
     if(loginAddress) {
-        $("#login_address").text(loginAddress);
+        $("#login_address").text(replaceChar(loginAddress, 6, -4, "..."));
         $(".loginBtns .navbar-tool").removeClass("hide");
         $(".loginBtns .btn").addClass("hide");
         $(".actions").removeClass("hide");

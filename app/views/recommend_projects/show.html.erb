@@ -21,7 +21,7 @@
               <div class="ps-2">
                 <%= image_tag @project.logo_url.to_s %>
                 <h6 class="mt-3"><%= t("views.label.recommender") %>:</h6>
-                <h6 class="nav-heading mb-1"><a><%= @project.user.address %></a></h6>
+                <h6 class="nav-heading mb-1"><a><%= address_format @project.user.address %></a></h6>
                 <h6 class="mt-3"><%= t("views.label.recommend_reason") %>:</h6>
                 <p><%= @project.reason %></p>
                 <div class="text-nowrap">
@@ -53,7 +53,7 @@
               <div class="d-flex align-items-center">
                 <%= image_tag "user.png", size: "45x45" %>
                 <div class="ps-2 ms-1">
-                  <h4 class="fs-sm mb-0"><%= truncate(comment.user.address, length: 10) %></h4><span class="fs-xs text-muted"><%= "#{time_ago_in_words comment.created_at} #{t('time.ago')}" %></span>
+                  <h4 class="fs-sm mb-0"><%= address_format comment.user.address %></h4><span class="fs-xs text-muted"><%= "#{time_ago_in_words comment.created_at} #{t('time.ago')}" %></span>
                 </div>
               </div>
             </div>

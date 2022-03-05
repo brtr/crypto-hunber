@@ -36,4 +36,9 @@ module ApplicationHelper
     admin_ids = ENV.fetch("ADMIN_IDS"){""}.split(',')
     current_user && current_user.id.to_s.in?(admin_ids)
   end
+
+  def address_format(address)
+    address[6...-4] = "...."
+    address
+  end
 end
