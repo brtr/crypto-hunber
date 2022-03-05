@@ -26,7 +26,7 @@
                 <div class="p-bottom">
                   <% if current_user %>
                     <% h = current_user.fetch_history(offer.id) %>
-                    <%= link_to t("views.action.take"), take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? %>
+                    <%= link_to t("views.action.take"), take_offer_path(offer), class: "btn btn-success takeBtn", method: :put if h.nil? && offer.remaining_count > 0 %>
                     <%= link_to t("views.action.complete"), "#", class: "btn btn-primary completeBtn", data: {id: offer.id, name: offer.name} if h && h.taken? %>
                     <%= link_to t("views.action.edit"), "#", class: "btn btn-default editOfferBtn", data: {id: offer.id, desc: offer.desc, count: offer.count} if is_admin? %>
                   <% end %>

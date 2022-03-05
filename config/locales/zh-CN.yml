@@ -233,6 +233,7 @@ zh-CN:
       no_taken: 您还没有领取任务，不能领取奖励
       no_project: 找不到对应的推荐项目
       no_user: 您还没登录，不能查看该页面
+      no_count: 名额已空，不能领取
     offer_status:
       not_started: 未领取
       incomplete: 未完成

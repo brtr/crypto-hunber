@@ -6,4 +6,8 @@ class Offer < ApplicationRecord
   def display_num
     "#{offer_histories.size} / #{count}"
   end
+
+  def remaining_count
+    count - offer_histories.size
+  end
 end

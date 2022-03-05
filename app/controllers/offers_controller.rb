@@ -17,14 +17,17 @@ class OffersController < ApplicationController
   end
 
   def take
-    history = @histories.first_or_create
-    if history.submitted?
-      history.taken!
-      @offer.count -= 1
-      @offer.save
-      flash[:notice] = t("views.notice.offer_take")
+    if @offer.remaining_count > 0
+      history = @histories.first_or_create
+      if history.submitted?
+        history.taken!
+        @offer.save
+        flash[:notice] = t("views.notice.offer_take")
+      else
+        flash[:alert] = t("views.error.duplicate_take")
+      end
     else
-      flash[:alert] = t("views.error.duplicate_take")
+      flash[:alert] = t("views.error.no_count")
     end
 
     redirect_to offers_path
