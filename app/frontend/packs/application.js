@@ -10,6 +10,7 @@ import Tagify from '@yaireo/tagify';
 import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
 import { checkSushiSwap } from './sushiswap';
+import { checkUniSwap } from './uniswap';
 import { checkENS, getENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
@@ -85,6 +86,9 @@ const checkOffer = async function(offerName) {
                 break;
             case "ENS":
                 result = await checkENS();
+                break;
+            case "Uniswap":
+                result = await checkUniSwap();
                 break;
             default:
                 result

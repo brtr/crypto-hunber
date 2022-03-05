@@ -7,7 +7,7 @@
             <div class="card" style="min-height:300px">
               <div class="card-header">
                 <div class="card-title">
-                  <%= image_tag offer.logo, width: "100px" if offer.logo %>
+                  <%= image_tag offer.logo, width: "100px", class: "rounded-circle" if offer.logo %>
                   <span class="p-right text-right">
                     <h4><%= link_to offer.name, offer.website, target: "_blank" %></h4>
                     <% if current_user %>
