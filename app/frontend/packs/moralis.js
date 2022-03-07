@@ -4,13 +4,13 @@ Moralis.start({ serverUrl: server, appId: appId });
 
 const loginAddress = localStorage.getItem("loginAddress");
 
-const checkOrder = async function(addresses) {
-    const options = { address: loginAddress, limit: 1000 };
+const checkOrder = async function(addresses, chain = "eth") {
+    const options = { address: loginAddress, limit: 1000, chain: chain };
     const txs = await Moralis.Web3API.account.getTransactions(options);
-
+    console.log("contract addresses: ", addresses);
     if (txs.total > 0) {
         const result = $.grep(txs.result, function(tx) {
-            return tx.from_address == loginAddress && $.inArray(tx.to_address, addresses);
+            return tx.from_address == loginAddress && $.inArray(tx.to_address, addresses) >= 0;
         })
 
         if (result.length > 0) {

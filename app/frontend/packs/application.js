@@ -11,6 +11,8 @@ import { checkContract } from './sunflower';
 import { checkOpensea } from './opensea';
 import { checkSushiSwap } from './sushiswap';
 import { checkUniSwap } from './uniswap';
+import { checkTradeJoe } from './tradejoe';
+import { checkPangolin } from './pangolin';
 import { checkENS, getENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
@@ -90,6 +92,11 @@ const checkOffer = async function(offerName) {
             case "Uniswap":
                 result = await checkUniSwap();
                 break;
+            case "TradeJoe":
+                result = await checkTradeJoe();
+                break;
+            case "Pangolin":
+                result = await checkPangolin();
             default:
                 result
         }
