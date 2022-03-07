@@ -7,7 +7,10 @@
             <div class="card" style="min-height:300px">
               <div class="card-header">
                 <div class="card-title">
-                  <%= image_tag offer.logo, width: "100px", class: "rounded-circle" if offer.logo %>
+                  <div class="logo">
+                    <%= image_tag offer.logo, width: "100px", class: "rounded-circle" %>
+                    <%= image_tag "#{offer.chain}.png", width: "30px", class: "rounded-circle chain-icon" %>
+                  </div>
                   <span class="p-right text-right">
                     <h4><%= link_to offer.name, offer.website, target: "_blank" %></h4>
                     <% if current_user %>
@@ -22,7 +25,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <p class="card-text"><%= truncate(offer.desc){ link_to t("views.label.more"), "#", class: "getDesc", data: {desc: offer.desc} } %></p>
+                <p class="card-text"><%= truncate(offer.desc, length: 60){ link_to t("views.label.more"), "#", class: "getDesc", data: {desc: offer.desc} } %></p>
                 <div class="p-bottom">
                   <% if current_user %>
                     <% h = current_user.fetch_history(offer.id) %>

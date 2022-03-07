@@ -62,17 +62,19 @@
         <div class="paginationBox p-4">
           <%= paginate @comments %>
         </div>
-        </div><a class="btn btn-translucent-primary d-block w-100" href="#comment-form" data-bs-toggle="collapse"><%= t("views.action.add_comment") %></a>
-        <div class="collapse" id="comment-form">
-          <%= form_for @comment, html: {class: "needs-validation rounded-3 shadow p-4 p-lg-5 mt-4"} do |f| %>
-            <div class="mb-3">
-              <%= f.rich_text_area :content %>
-              <%= f.hidden_field :recommend_project_id, value: @project.id %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-            </div>
-            <%= f.submit t("views.action.submit"), class: "btn btn-primary" %>
-          <% end %>
-        </div>
+        <% if current_user %>
+          <a class="btn btn-translucent-primary d-block w-100" href="#comment-form" data-bs-toggle="collapse"><%= t("views.action.add_comment") %></a>
+          <div class="collapse" id="comment-form">
+            <%= form_for @comment, html: {class: "needs-validation rounded-3 shadow p-4 p-lg-5 mt-4"} do |f| %>
+              <div class="mb-3">
+                <%= f.rich_text_area :content %>
+                <%= f.hidden_field :recommend_project_id, value: @project.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+              </div>
+              <%= f.submit t("views.action.submit"), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

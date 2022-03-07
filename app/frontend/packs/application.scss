@@ -64,3 +64,16 @@
     margin-left: -.5rem;
   }
 }
+
+.logo {
+  display: inline-block;
+  position: relative;
+}
+
+.chain-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  background-color: #fff;
+}
