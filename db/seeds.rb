@@ -13,3 +13,5 @@ Offer.create(name: "ENS", desc: "ENS offer", count: 10, reward: 10, status: "ava
 Offer.create(name: "Uniswap", desc: "Uniswap offer", count: 10, reward: 10, status: "avaliable", logo: "uniswap.png", website: "https://app.uniswap.org/#/pool", chain: "eth")
 Offer.create(name: "TradeJoe", desc: "TradeJoe offer", count: 10, reward: 10, status: "avaliable", logo: "tradejoe.png", website: "https://traderjoexyz.com/pool", chain: "avax")
 Offer.create(name: "Pangolin", desc: "Pangolin offer", count: 10, reward: 10, status: "avaliable", logo: "pangolin.png", website: "https://app.pangolin.exchange/#/pool", chain: "avax")
+Offer.create(name: "Spookyswap", desc: "Spookyswap offer", count: 10, reward: 10, status: "avaliable", logo: "spookyswap.png", website: "https://spookyswap.finance/add", chain: "fantom")
+Offer.create(name: "Lido", desc: "Lido offer", count: 10, reward: 10, status: "avaliable", logo: "lido.png", website: "https://stake.lido.fi/", chain: "eth")

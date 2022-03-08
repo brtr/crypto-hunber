@@ -13,6 +13,8 @@ import { checkSushiSwap } from './sushiswap';
 import { checkUniSwap } from './uniswap';
 import { checkTradeJoe } from './tradejoe';
 import { checkPangolin } from './pangolin';
+import { checkSpookySwap } from './spookyswap';
+import { checkLido } from './lido';
 import { checkENS, getENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
@@ -97,12 +99,19 @@ const checkOffer = async function(offerName) {
                 break;
             case "Pangolin":
                 result = await checkPangolin();
+                break;
+            case "Spookyswap":
+                result = await checkSpookySwap();
+                break;
+            case "Lido":
+                result = await checkLido();
+                break;
             default:
                 result
         }
 
         console.log("Result: ", result);
-        return result
+        return result;
     } catch (err) {
         fetchErrMsg(err);
     }

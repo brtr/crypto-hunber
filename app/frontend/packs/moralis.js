@@ -13,6 +13,8 @@ const checkOrder = async function(addresses, chain = "eth") {
             return tx.from_address == loginAddress && $.inArray(tx.to_address, addresses) >= 0;
         })
 
+        console.log("result: ", result);
+
         if (result.length > 0) {
             return true;
         }
