@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_082751) do
+ActiveRecord::Schema.define(version: 2022_03_08_074136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2022_03_07_082751) do
     t.string "logo"
     t.string "website"
     t.string "chain"
+    t.string "cost"
   end
 
   create_table "recommend_projects", force: :cascade do |t|
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_03_07_082751) do
     t.text "reason"
     t.string "logo"
     t.integer "status"
+    t.string "cost"
   end
 
   create_table "taggings", force: :cascade do |t|

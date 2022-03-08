@@ -230,6 +230,7 @@ $(document).on('turbolinks:load', function() {
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             $("#editForm").attr("action", "/offers/" + $(this).data("id"));
             $("#editForm").find("#offer_count").val($(this).data("count"));
+            $("#editForm").find("#offer_cost").val($(this).data("cost"));
             $("#editForm").find("#offer_desc").val($(this).data("desc"));
             $("#editForm").find("input[name='authenticity_token']").val(token);
             $("#editOfferModal").modal("show");

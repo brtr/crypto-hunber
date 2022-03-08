@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let (:offer) { create(:offer) }
+
+  it "has a valid factory" do
+    expect(offer).to be_valid
+  end
+
+  it { should have_many(:offer_histories) }
 end

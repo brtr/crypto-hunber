@@ -8,6 +8,7 @@ zh-CN:
         reason: 推荐理由*
         tag_list: 标签
         desc: 项目描述*
+        cost: 项目成本*
     errors:
       messages:
         record_invalid: '验证失败: %{errors}'
@@ -205,6 +206,8 @@ zh-CN:
       account: 个人页面
       total_points: 累积积分
       usable_points: 可用积分
+      cost: 成本
+      desc: 详情
       more: 更多
     action:
       submit: 提交

@@ -20,6 +20,10 @@
       <%= f.text_field :reason, class: "form-control", required: true %>
     </div>
     <div class="mb-3 pb-1 col-12">
+      <%= f.label :cost, class: "form-label px-0" %>
+      <%= f.text_field :cost, class: "form-control", required: true %>
+    </div>
+    <div class="mb-3 pb-1 col-12">
       <%= f.label :tag_list, class: "form-label px-0" %>
       <%= f.text_field :tag_list, value: f.object.tag_list.to_s, class: "form-control", required: true %>
     </div>

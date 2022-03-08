@@ -84,6 +84,6 @@ class RecommendProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:recommend_project).permit(:name, :website, :desc, :reason, :tag_list, :logo)
+    params.require(:recommend_project).permit(:name, :website, :desc, :reason, :tag_list, :logo, :cost)
   end
 end

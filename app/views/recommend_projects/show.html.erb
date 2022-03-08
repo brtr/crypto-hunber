@@ -20,8 +20,8 @@
             <div class="d-flex align-items-center me-grid-gutter">
               <div class="ps-2">
                 <%= image_tag @project.logo_url.to_s %>
-                <h6 class="mt-3"><%= t("views.label.recommender") %>:</h6>
-                <h6 class="nav-heading mb-1"><a><%= address_format @project.user.address %></a></h6>
+                <h6 class="mt-3"><%= t("views.label.cost") %>: <span class="ms-2"><%= @project.cost %></span></h6>
+                <h6 class="mt-3"><%= t("views.label.recommender") %>: <span class="ms-2"><%= address_format @project.user.address %></span></h6>
                 <h6 class="mt-3"><%= t("views.label.recommend_reason") %>:</h6>
                 <p><%= @project.reason %></p>
                 <div class="text-nowrap">

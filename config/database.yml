@@ -9,6 +9,7 @@ development:
   <<: *default
 
 test:
+  database: offerwall_test
   <<: *default
 
 stage:

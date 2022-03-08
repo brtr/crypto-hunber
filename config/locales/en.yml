@@ -8,6 +8,7 @@ en:
         reason: Recommend reason*
         tag_list: Tags
         desc: Project Description*
+        cost: Cost*
     errors:
       messages:
         record_invalid: 'Validation failed: %{errors}'

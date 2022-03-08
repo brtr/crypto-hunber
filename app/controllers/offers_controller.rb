@@ -58,6 +58,6 @@ class OffersController < ApplicationController
   end
 
   def offer_params
-    params.require(:offer).permit(:desc, :count)
+    params.require(:offer).permit(:desc, :count, :cost)
   end
 end
