@@ -3,7 +3,12 @@ class RecommendProjectsController < ApplicationController
 
   def index
     @page_index = 2
-    @projects = RecommendProject.approved.includes(:user_like_projects, :tags).order(created_at: :desc).page(params[:page]).per(10)
+    projects = RecommendProject.approved.includes(:user_like_projects, :tags)
+    projects = projects.where(name: params[:name]) if params[:name].present?
+    projects = projects.where(created_at: params[:created_at]) if params[:created_at].present?
+    projects = projects.tagged_with(params[:tag]) if params[:tag].present?
+    projects = projects.custom_sort(params[:sort])
+    @projects = projects.page(params[:page]).per(4)
   end
 
   def new

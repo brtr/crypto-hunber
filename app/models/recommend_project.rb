@@ -19,6 +19,17 @@ class RecommendProject < ApplicationRecord
     logo.attachment.service_url rescue nil
   end
 
+  def self.custom_sort(params)
+    case params
+    when "tag"
+      order("tags.name asc")
+    when "name"
+      order(name: :asc)
+    else
+      order(created_at: :desc)
+    end
+  end
+
   private
   def set_status
     self.status = "submitted"

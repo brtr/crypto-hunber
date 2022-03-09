@@ -237,6 +237,10 @@ en:
       language: Language
       unchecked_projects: Unchecked Projects
       account: Profile
+      project_name: Project Name
+      project_tag: Project Tag
+      project_created_at: Recommend At
+      sort_by: Sort By
     action:
       submit: Submit
       cancel: Cancel
@@ -263,3 +267,8 @@ en:
       not_started: Not Started
       incomplete: Incomplete
       complete: Complete
+    pagination:
+      next: ">"
+      previous: "<"
+      first: "<<"
+      last: ">>"

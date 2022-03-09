@@ -209,6 +209,12 @@ zh-CN:
       cost: 成本
       desc: 详情
       more: 更多
+      project_name: 项目名称
+      project_tag: 项目标签
+      project_created_at: 推荐时间
+      sort_by: 排序
+      sidebar: 侧边栏
+      search: 搜索排序
     action:
       submit: 提交
       cancel: 取消
@@ -221,6 +227,7 @@ zh-CN:
       upload: 上传
       check: 审核通过
       close: 关闭
+      reset: 重置
     notice:
       offer_take: 任务已领取
       offer_complete: 任务已完成
@@ -241,3 +248,8 @@ zh-CN:
       not_started: 未领取
       incomplete: 未完成
       complete: 已完成
+    pagination:
+      next: ">"
+      previous: "<"
+      first: "<<"
+      last: ">>"
