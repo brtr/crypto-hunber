@@ -241,12 +241,22 @@ en:
       project_tag: Project Tag
       project_created_at: Recommend At
       sort_by: Sort By
+      info_1: Try it out, recommend your projects, and get recognized and rewarded by others. Gain experience and open the door to Web3
+      for_advertiser: For Advertiser
+      advertiser_desc: Find high-quality core users for the project, you can get attention and get feedback from users in the early stage of the project.
+      info_2: "Acquire basic concepts and skills about web3 by following:"
+      info_3: 1. Try our recommended programs to master general skills.
+      info_4: 2. Mining and recommending high-quality projects, and get reward points.
+      info_5: 3. Get praise from others and increase your influence.
+      info_6: 4. Get early access to new products.
+      info_7: 5. Participate in evaluation and track high-quality project recommenders.
     action:
       submit: Submit
       cancel: Cancel
       edit: Edit
       take: Take
       complete: Complete
+      start_project: Check Recommending Project
     notice:
       offer_take: Offer is taken
       offer_complete: Offer is completed

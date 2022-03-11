@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "offers#index"
+  root to: "home#index"
 
   resources :offers, only: [:index, :update] do
     member do

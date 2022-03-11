@@ -196,6 +196,7 @@ zh-CN:
       add_project: 添加推荐项目
       edit_project: 修改推荐项目
       offer_desc: Offer 详情
+      offer: 任务列表
     label:
       recommender: 推荐人
       recommend_reason: 推荐理由
@@ -215,6 +216,17 @@ zh-CN:
       sort_by: 排序
       sidebar: 侧边栏
       search: 搜索排序
+      learn_to_earn: 学以致富
+      info_1: 尝试， 推荐你参与的项目， 并得到其他人的认可和奖励。累积经验，打开通往Web3的大门
+      for_advertiser: 对于广告方
+      advertiser_desc: 为项目找到优质的核心用户，在项目的早期，就能获得关注，并得到用户的反馈。
+      info_2: "通过以下内容，获取关于web3的基本概念和技能:"
+      info_3: 1. 尝试我们的推荐项目， 掌握通用的技能
+      info_4: 2. 挖掘并推荐优质的项目， 并获得积分奖励
+      info_5: 3. 得到其他人的赞赏， 提升你的影响力
+      info_6: 4. 获得提前使用新的产品的机会
+      info_7: 5. 参与评价， 跟踪优质的项目推荐官
+      try: 尝试
     action:
       submit: 提交
       cancel: 取消
@@ -228,6 +240,7 @@ zh-CN:
       check: 审核通过
       close: 关闭
       reset: 重置
+      start_project: 查看推荐项目
     notice:
       offer_take: 任务已领取
       offer_complete: 任务已完成
