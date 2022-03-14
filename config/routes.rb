@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   post 'login', to: "users#login", as: :login
   post 'logout', to: "users#logout", as: :logout
+  get 'how-it-works', to: "home#howitworks", as: :howitworks
+  get 'roadmap', to: "home#roadmap", as: :roadmap
 end

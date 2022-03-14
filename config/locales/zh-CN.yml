@@ -197,6 +197,8 @@ zh-CN:
       edit_project: 修改推荐项目
       offer_desc: Offer 详情
       offer: 任务列表
+      howitworks: 平台介绍
+      roadmap: 路线图
     label:
       recommender: 推荐人
       recommend_reason: 推荐理由
@@ -217,9 +219,10 @@ zh-CN:
       sidebar: 侧边栏
       search: 搜索排序
       learn_to_earn: 学以致富
-      info_1: 尝试， 推荐你参与的项目， 并得到其他人的认可和奖励。累积经验，打开通往Web3的大门
-      for_advertiser: 对于广告方
+      for_advertisers: 对于广告方
+      for_users: 对于用户
       advertiser_desc: 为项目找到优质的核心用户，在项目的早期，就能获得关注，并得到用户的反馈。
+      info_1: 尝试， 推荐你参与的项目， 并得到其他人的认可和奖励。累积经验，打开通往Web3的大门
       info_2: "通过以下内容，获取关于web3的基本概念和技能:"
       info_3: 1. 尝试我们的推荐项目， 掌握通用的技能
       info_4: 2. 挖掘并推荐优质的项目， 并获得积分奖励
@@ -227,6 +230,46 @@ zh-CN:
       info_6: 4. 获得提前使用新的产品的机会
       info_7: 5. 参与评价， 跟踪优质的项目推荐官
       try: 尝试
+      howitworks1: 聚焦加密领域的大众点评和奖励墙
+      howitworks2: 随着加密领域的发展，各类项目不断的涌现，如何从这些项目中筛选出有价值，并且是经过验证的，真正得到大众认可，未来有发展潜力的项目变得越来越难
+      howitworks3: 我们推出Crypto Hunter就是为了从纷繁复杂的项目中，借助社区的力量，挖掘真正的钻石项目。同时也为用户提供优质项目的参与机会，并获得适当的奖励
+      for_user1: "用户可以通过以下的参与获得一定的积分:"
+      for_user2: 推荐优质的项目，提交个人的使用心得，通过审核获取10积分
+      for_user3: 推荐的项目获得其他用户的点赞，根据点赞数量获取积分，1个点赞对应1个积分
+      for_user4: 对于项目的优质评论，可以获得1个积分
+      for_user5: 完成奖励墙的推荐项目，可以获取一定的积分，视项目情况，积分奖励会有不同
+      for_user6: 优先完成奖励墙的项目，可以额外获得项目方的奖励
+      for_user7: 获得其他用户的关注，可以获取奖励积分
+      for_ad1: 在项目早期获得优质的用户参与
+      for_ad2: 能够获得定向用户的反馈
+      points_purpose: 积分用途
+      pp1: 积分可以按照一定比例兑换CPTH Token
+      cpth1: CPTH Token 用于兑换 NFT
+      cpth2: CPTH Token 可以兑换奖励墙项目的优先参与权
+      cpth3: 持有 CPTH Token，用于提升个人的影响力， 推荐项目获取优先展示排名
+      cpth4: CPTH Token 可用于商店兑换项目白名单以及相关周边
+      roadmap_q1_1: metamask 登陆
+      roadmap_q1_2: 项目推荐功能， 用户可以提交推荐项目信息
+      roadmap_q1_3: 项目可以被其他人点赞
+      roadmap_q1_4: 每被点赞一次， 可以累积一个积分
+      roadmap_q1_5: 标签功能
+      roadmap_q1_6: 项目详情， 调研结果以及评论功能
+      roadmap_q1_7: 多语言支持
+      roadmap_q1_8: 个人主页， 显示推荐的项目，累积的积分
+      roadmap_q1_9: 用户推荐项目审核
+      roadmap_q2_1: 优秀评论置顶
+      roadmap_q2_2: CPTH Token 发布
+      roadmap_q2_3: 对于持有Token用户的赋能
+      roadmap_q2_4: 持有Token越多的用户, 推荐的项目会有更高的优先级，在排名里面优先展示
+      roadmap_q2_5: 持有Token越多的用户, 能够优先获得参与Offer的机会
+      roadmap_q2_6: 对项目增加更多维度的评分
+      roadmap_q2_7: 根据用户的数据， 给出对应的项目推荐
+      roadmap_q2_8: 关注其他用户，并获得提醒
+      roadmap_q3_1: 进行项目推广
+      roadmap_q3_2: 与优质项目进行合作， 接入Offer wall
+      roadmap_q4_1: NFT 功能上线
+      roadmap_q4_2: Token 兑换商城上线
+      roadmap_q4_3: 项目相关周边上线
     action:
       submit: 提交
       cancel: 取消

@@ -229,6 +229,8 @@ en:
       projects_list: Projects List
       add_project: Submit Project
       edit_project: Edit Project
+      howitworks: How It Works
+      roadmap: Road Map
     label:
       recommender: Recommender
       recommend_reason: Recommend Reason
@@ -242,7 +244,8 @@ en:
       project_created_at: Recommend At
       sort_by: Sort By
       info_1: Try it out, recommend your projects, and get recognized and rewarded by others. Gain experience and open the door to Web3
-      for_advertiser: For Advertiser
+      for_advertisers: For Advertisers
+      for_users: For Users
       advertiser_desc: Find high-quality core users for the project, you can get attention and get feedback from users in the early stage of the project.
       info_2: "Acquire basic concepts and skills about web3 by following:"
       info_3: 1. Try our recommended programs to master general skills.
@@ -250,6 +253,46 @@ en:
       info_5: 3. Get praise from others and increase your influence.
       info_6: 4. Get early access to new products.
       info_7: 5. Participate in evaluation and track high-quality project recommenders.
+      howitworks1: Focus on the world of crypto comments and rewards
+      howitworks2: With the development of the crypto field, various types of projects continue to emerge, how to screen out from these projects that are valuable, and are verified, truly recognized by the public, it is becoming more and more difficult to develop projects with development potential in the future
+      howitworks3: We launched Crypto Hunter to unearth real diamond projects from complex projects and the power of the community. At the same time, it also provides users with the opportunity to participate in quality projects and receive appropriate rewards
+      for_user1: "Users can earn certain points through the following participation:"
+      for_user2: Recommend high-quality projects, submit personal experience, and obtain 10 points through review
+      for_user3: Recommended items get likes from other users, points are obtained according to the number of likes, and 1 like corresponds to 1 point
+      for_user4: For quality reviews of the project, you can get 1 point
+      for_user5: Complete the recommended project of the reward wall, you can get a certain number of points, depending on the project situation, the point reward will be different
+      for_user6: Priority completion of the reward wall project, you can get additional rewards from the project side
+      for_user7: Get follow from other users, you can get reward points
+      for_ad1: Get quality user engagement early in the project
+      for_ad2: Ability to get feedback from targeted users
+      points_purpose: "Purpose of points:"
+      pp1: Points can be redeemed for CPTH Token in a certain percentage
+      cpth1: CPTH Token is used to exchange for NFT
+      cpth2: CPTH Token can be redeemed for priority participation in reward wall projects
+      cpth3: Hold a CPTH Token to enhance your personal influence and recommend projects to get priority display rankings
+      cpth4: CPTH Token can be used for store redemption project whitelists and related peripherals
+      roadmap_q1_1: Metamask login
+      roadmap_q1_2: Project recommendation function, users can submit recommended project information
+      roadmap_q1_3: Projects can be liked by others
+      roadmap_q1_4: For each like, you can accumulate a point
+      roadmap_q1_5: Tag function
+      roadmap_q1_6: Project details, research results and comment function
+      roadmap_q1_7: Multi-language support
+      roadmap_q1_8: Personal homepage, displaying recommended items, accumulated points
+      roadmap_q1_9: User recommended project review
+      roadmap_q2_1: Excellent reviews topped
+      roadmap_q2_2: CPTH Token published
+      roadmap_q2_3: For the empowerment of token-holding users
+      roadmap_q2_4: The more users who hold tokens, the higher the priority of the recommended projects, and the priority display in the ranking
+      roadmap_q2_5: Users who hold more Tokens will have priority to get the opportunity to participate in Offer
+      roadmap_q2_6: Add more dimensions of the item's rating
+      roadmap_q2_7: According to the user's data, the corresponding project recommendation is given
+      roadmap_q2_8: Follow other users and get alerts
+      roadmap_q3_1: Carry out project promotion
+      roadmap_q3_2: Collaborate with quality projects and access the Offer wall
+      roadmap_q4_1: The NFT function is online
+      roadmap_q4_2: Token redemption mall online
+      roadmap_q4_3: The project related peripherals are online
     action:
       submit: Submit
       cancel: Cancel
