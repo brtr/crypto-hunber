@@ -7,15 +7,7 @@ require("@rails/actiontext");
 import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
-import { checkContract } from './sunflower';
-import { checkOpensea } from './opensea';
-import { checkSushiSwap } from './sushiswap';
-import { checkUniSwap } from './uniswap';
-import { checkTradeJoe } from './tradejoe';
-import { checkPangolin } from './pangolin';
-import { checkSpookySwap } from './spookyswap';
-import { checkLido } from './lido';
-import { checkENS, getENS } from './moralis';
+import { checkRaydium } from './raydium';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -49,15 +41,18 @@ const toggleAddress = function() {
 
 const checkLogin = async function() {
     $("#spinner").removeClass("hide");
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    if (accounts.length > 0) {
-        localStorage.setItem("loginAddress", accounts[0]);
-        loginAddress = accounts[0];
+
+    try {
+        const resp = await window.solana.connect();
+        const address = resp.publicKey.toString();
+        localStorage.setItem("loginAddress", address);
+        loginAddress = address;
         login();
-    } else {
+    } catch (err) {
         localStorage.removeItem("loginAddress");
         loginAddress = null;
         toggleAddress();
+        fetchErrMsg(err);
     }
 }
 
@@ -79,32 +74,8 @@ const checkOffer = async function(offerName) {
     try {
         console.log(offerName);
         switch(offerName) {
-            case "SunFlower":
-                result = await checkContract();
-                break;
-            case "Opensea":
-                result = await checkOpensea();
-                break;
-            case "Sushiswap":
-                result = await checkSushiSwap();
-                break;
-            case "ENS":
-                result = await checkENS();
-                break;
-            case "Uniswap":
-                result = await checkUniSwap();
-                break;
-            case "TradeJoe":
-                result = await checkTradeJoe();
-                break;
-            case "Pangolin":
-                result = await checkPangolin();
-                break;
-            case "Spookyswap":
-                result = await checkSpookySwap();
-                break;
-            case "Lido":
-                result = await checkLido();
+            case "Raydium":
+                result = await checkRaydium();
                 break;
             default:
                 result
@@ -240,7 +211,7 @@ $(document).on('turbolinks:load', function() {
             fetchEnsName();
         }
 
-        // detect Metamask account change
+        // detect Phantom account change
         ethereum.on('accountsChanged', function (accounts) {
             console.log('accountsChanges',accounts);
             if (accounts.length > 0) {
