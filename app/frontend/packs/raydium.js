@@ -1,9 +1,9 @@
-import { checkTokens } from "./moralis";
+import { checkToken } from "./solscan";
 
 const raydiumAddress = NODE_ENV["RAYDIUM_ADDRESS"];
 
 const checkRaydium = async function() {
-    const result = await checkTokens([raydiumAddress]);
+    const result = await checkToken(raydiumAddress);
     return result;
 }
 

@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
 import { checkRaydium } from './raydium';
+import { checkSaber } from './saber';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -76,6 +77,9 @@ const checkOffer = async function(offerName) {
         switch(offerName) {
             case "Raydium":
                 result = await checkRaydium();
+                break;
+            case "Saber":
+                result = await checkSaber();
                 break;
             default:
                 result

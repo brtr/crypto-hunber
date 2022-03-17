@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Offer.create(name: "Raydium", desc: "Raydium offer", count: 10, reward: 10, status: "avaliable", logo: "raydium.jpeg", website: "https://raydium.io/pools/", chain: "solana", cost: 0)
+Offer.create(name: "Saber", desc: "Saber offer", count: 10, reward: 10, status: "avaliable", logo: "saber.svg", website: "https://app.saber.so/#/swap", chain: "solana", cost: 0)
