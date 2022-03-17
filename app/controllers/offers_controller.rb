@@ -39,7 +39,8 @@ class OffersController < ApplicationController
     if history
       if history.taken?
         history.done!
-        AirdropTokenJob.perform_later(@offer.id, current_user.address, @offer.reward)
+        current_user.point.change_point(@offer.reward, "offer_complete")
+        #AirdropTokenJob.perform_later(@offer.id, current_user.address, @offer.reward)
         flash[:notice] = t("views.notice.offer_complete")
       else
         flash[:alert] = t("views.error.duplicate_complete")
