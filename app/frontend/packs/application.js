@@ -9,6 +9,8 @@ import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
 import { checkRaydium } from './raydium';
 import { checkSaber } from './saber';
+import { checkSolanart } from './solanart';
+import { checkSolend } from './solend';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -81,6 +83,12 @@ const checkOffer = async function(offerName) {
             case "Saber":
                 result = await checkSaber();
                 break;
+            case "Solanart":
+                result = await checkSolanart();
+                break;
+            case "Solend":
+                result = await checkSolend();
+                break;
             default:
                 result
         }
@@ -121,16 +129,6 @@ const toggleUserLike = function(projectId) {
     }
 }
 
-const fetchEnsName = async function() {
-    const name = await getENS();
-    if (name) {
-        $("#ens").text(name);
-        $("#ensBlock").removeClass("hide");
-    } else {
-        $("#ensBlock").addClass("hide");
-    }
-}
-
 $(document).on('turbolinks:load', function() {
   'use strict';
 
@@ -146,12 +144,12 @@ $(document).on('turbolinks:load', function() {
         $("#btn-logout").on("click", function(){
             $("#spinner").removeClass("hide");
             localStorage.removeItem("loginAddress");
-
             $.ajax({
                 url: "/logout",
                 method: "post"
             }).done(function(data) {
                 if (data.success) {
+                    window.solana.request({ method: "disconnect" });
                     location.reload();
                 }
             })
@@ -210,29 +208,5 @@ $(document).on('turbolinks:load', function() {
             $("#editForm").find("input[name='authenticity_token']").val(token);
             $("#editOfferModal").modal("show");
         })
-
-        if ($("#userProfile").length > 0) {
-            fetchEnsName();
-        }
-
-        // detect Phantom account change
-        ethereum.on('accountsChanged', function (accounts) {
-            console.log('accountsChanges',accounts);
-            if (accounts.length > 0) {
-                localStorage.setItem("loginAddress", accounts[0]);
-                loginAddress = accounts[0];
-                login();
-            } else {
-                localStorage.removeItem("loginAddress");
-                loginAddress = null;
-                toggleAddress();
-            }
-        });
-
-        // detect Network account change
-        ethereum.on('chainChanged', function(networkId){
-            console.log('networkChanged',networkId);
-            location.reload();
-        });
     });
 });
