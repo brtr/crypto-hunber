@@ -11,6 +11,8 @@ import { checkRaydium } from './raydium';
 import { checkSaber } from './saber';
 import { checkSolanart } from './solanart';
 import { checkSolend } from './solend';
+import { checkGrape } from './grape';
+import { checkDefiland } from './defiland';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -88,6 +90,12 @@ const checkOffer = async function(offerName) {
                 break;
             case "Solend":
                 result = await checkSolend();
+                break;
+            case "Grape":
+                result = await checkGrape();
+                break;
+            case "DeFi Land":
+                result = await checkDefiland();
                 break;
             default:
                 result

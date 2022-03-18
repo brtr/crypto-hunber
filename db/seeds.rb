@@ -10,3 +10,5 @@ Offer.create(name: "Raydium", desc: "Raydium offer", count: 10, reward: 10, stat
 Offer.create(name: "Saber", desc: "Saber offer", count: 10, reward: 10, status: "avaliable", logo: "saber.svg", website: "https://app.saber.so/#/swap", chain: "solana", cost: 0)
 Offer.create(name: "Solend", desc: "Solend offer", count: 10, reward: 10, status: "avaliable", logo: "solend.png", website: "https://solend.fi/dashboard", chain: "solana", cost: 0)
 Offer.create(name: "Solanart", desc: "Solanart offer", count: 10, reward: 10, status: "avaliable", logo: "solanart.png", website: "https://solanart.io/", chain: "solana", cost: 0)
+Offer.create(name: "Grape", desc: "Grape offer", count: 10, reward: 10, status: "avaliable", logo: "grape.png", website: "https://verify.grapes.network/", chain: "solana", cost: 0)
+Offer.create(name: "DeFi Land", desc: "DeFi Land offer", count: 10, reward: 10, status: "avaliable", logo: "defiland.jpeg", website: "https://play.defiland.app/", chain: "solana", cost: 0)

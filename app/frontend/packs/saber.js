@@ -1,9 +1,9 @@
-import { checkToken } from "./solscan";
+import { checkTxs } from "./solscan";
 
 const saberAddress = NODE_ENV["SABER_ADDRESS"];
 
 const checkSaber = async function() {
-    const result = await checkToken(saberAddress);
+    const result = await checkTxs(saberAddress);
     return result;
 }
 
