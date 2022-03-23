@@ -9,15 +9,13 @@ import QRCodeModal from "@walletconnect/qrcode-modal";
 import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
-import { checkContract } from './sunflower';
-import { checkOpensea } from './opensea';
-import { checkSushiSwap } from './sushiswap';
-import { checkUniSwap } from './uniswap';
-import { checkTradeJoe } from './tradejoe';
-import { checkPangolin } from './pangolin';
-import { checkSpookySwap } from './spookyswap';
-import { checkLido } from './lido';
-import { checkENS, getENS } from './moralis';
+import { checkFountain } from './fountain';
+import { checkLizard } from './lizard';
+import { checkONS } from './ons';
+import { checkTofu } from './tofu';
+import { checkValleySwap } from './valleyswap';
+import { checkYuzuSwap } from './yuzuswap';
+
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -143,32 +141,23 @@ const checkOffer = async function(offerName) {
     try {
         console.log(offerName);
         switch(offerName) {
-            case "SunFlower":
-                result = await checkContract();
+            case "Fountain":
+                result = await checkFountain();
                 break;
-            case "Opensea":
-                result = await checkOpensea();
+            case "Lizard":
+                result = await checkLizard();
                 break;
-            case "Sushiswap":
-                result = await checkSushiSwap();
+            case "ONS":
+                result = await checkONS();
                 break;
-            case "ENS":
-                result = await checkENS();
+            case "Tofu":
+                result = await checkTofu();
                 break;
-            case "Uniswap":
-                result = await checkUniSwap();
+            case "ValleySwap":
+                result = await checkValleySwap();
                 break;
-            case "TradeJoe":
-                result = await checkTradeJoe();
-                break;
-            case "Pangolin":
-                result = await checkPangolin();
-                break;
-            case "Spookyswap":
-                result = await checkSpookySwap();
-                break;
-            case "Lido":
-                result = await checkLido();
+            case "YuzuSwap":
+                result = await checkYuzuSwap();
                 break;
             default:
                 result
