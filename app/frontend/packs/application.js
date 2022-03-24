@@ -4,6 +4,8 @@ require("jquery");
 require("trix");
 require("@rails/actiontext");
 
+import WalletConnect from "@walletconnect/client";
+import QRCodeModal from "@walletconnect/qrcode-modal";
 import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
@@ -19,6 +21,7 @@ import { checkENS, getENS } from './moralis';
 
 let loginAddress = localStorage.getItem("loginAddress");
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+let connector = null;
 
 function replaceChar(origString, firstIdx, lastIdx, replaceChar) {
     let firstPart = origString.substr(0, firstIdx);
@@ -38,16 +41,16 @@ const toggleAddress = function() {
     if(loginAddress) {
         $("#login_address").text(replaceChar(loginAddress, 6, -4, "..."));
         $(".loginBtns .navbar-tool").removeClass("hide");
-        $(".loginBtns .btn").addClass("hide");
+        $(".loginBtns .connect-btn").addClass("hide");
         $(".actions").removeClass("hide");
     } else {
         $(".actions").addClass("hide");
         $(".loginBtns .navbar-tool").addClass("hide");
-        $(".loginBtns .btn").removeClass("hide");
+        $(".loginBtns .connect-btn").removeClass("hide");
     }
 }
 
-const checkLogin = async function() {
+const checkMetamaskLogin = async function() {
     $("#spinner").removeClass("hide");
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     if (accounts.length > 0) {
@@ -59,6 +62,65 @@ const checkLogin = async function() {
         loginAddress = null;
         toggleAddress();
     }
+}
+
+const setConnector = async function() {
+    // Create a connector
+    connector = new WalletConnect({
+        bridge: "https://bridge.walletconnect.org", // Required
+        qrcodeModal: QRCodeModal,
+    });
+
+    console.log("connector ", connector);
+    await subscribeEvent();
+}
+
+const checkWalletConnect = function() {
+    $("#spinner").removeClass("hide");
+
+    // Check if connection is already established
+    if (!connector.connected) {
+        // create new session
+        connector.createSession();
+    }
+}
+
+const subscribeEvent = function() {
+    // Subscribe to connection events
+    connector.on("connect", (error, payload) => {
+        if (error) {
+            throw error;
+        }
+
+        // Get provided accounts and chainId
+        const { accounts, chainId } = payload.params[0];
+        console.log("connect: ");
+        if (accounts.length > 0) {
+            localStorage.setItem("loginAddress", accounts[0]);
+            loginAddress = accounts[0];
+            login();
+        } else {
+            localStorage.removeItem("loginAddress");
+            loginAddress = null;
+            toggleAddress();
+        }
+    });
+
+    connector.on("session_update", (error, payload) => {
+        if (error) {
+            throw error;
+        }
+
+        console.log("session update: ");
+    });
+
+    connector.on("disconnect", (error, payload) => {
+        if (error) {
+          throw error;
+        }
+
+        console.log("disconnect: ");
+    });
 }
 
 const login = function() {
@@ -162,15 +224,23 @@ $(document).on('turbolinks:load', function() {
     $(function() {
         $('[data-bs-toggle="tooltip"]').tooltip({html: true});
 
-        $("#btn-login").on("click", function(e){
+        $("#metamask_login").on("click", function(e){
             e.preventDefault();
-            console.log("hello");
-            checkLogin();
+            checkMetamaskLogin();
         });
+
+        setConnector();
+
+        $("#walletconnect_login").on("click", function(e) {
+            e.preventDefault();
+            checkWalletConnect();
+        })
 
         $("#btn-logout").on("click", function(){
             $("#spinner").removeClass("hide");
             localStorage.removeItem("loginAddress");
+
+            if (connector) { connector.killSession()};
 
             $.ajax({
                 url: "/logout",
@@ -258,6 +328,6 @@ $(document).on('turbolinks:load', function() {
         ethereum.on('chainChanged', function(networkId){
             console.log('networkChanged',networkId);
             location.reload();
-        });
+        });        
     });
 });

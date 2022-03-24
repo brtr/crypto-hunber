@@ -26,7 +26,23 @@
             <%= image_tag "logo.png", class: "d-none d-lg-block", width: "153" %>
           </a>
           <div class="d-flex align-items-center order-lg-3 ms-lg-auto loginBtns">
-            <%= button_tag(t("views.label.metamask_connect"), class: "btn btn-warning", id: "btn-login") %>
+            <div class="navbar-tool dropdown connect-btn">
+              <%= button_tag(t("views.label.connect"), class: "btn btn-warning") %>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <%= link_to "#", class: "dropdown-item", id: "metamask_login" do %>
+                    <%= image_tag "metamask.svg", size: "20x20", class: "me-1" %>
+                    MetaMask
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to "#", class: "dropdown-item", id: "walletconnect_login" do %>
+                    <%= image_tag "walletconnect.png", size: "20x20", class: "me-1" %>
+                    WalletConnect
+                  <% end %>
+                </li>
+              </ul>
+            </div>
             <div class="navbar-tool dropdown hide">
               <a href="#" role="button" class="navbar-tool-label">
                 <span id="login_address"></span>

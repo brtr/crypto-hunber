@@ -235,7 +235,7 @@ en:
       recommender: Recommender
       recommend_reason: Recommend Reason
       comments: Comments
-      metamask_connect: Connect Metamask
+      connect: Connect
       language: Language
       unchecked_projects: Unchecked Projects
       account: Profile
