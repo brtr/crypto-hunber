@@ -9,12 +9,12 @@ import QRCodeModal from "@walletconnect/qrcode-modal";
 import 'bootstrap/dist/js/bootstrap';
 import "bootstrap/dist/css/bootstrap";
 import Tagify from '@yaireo/tagify';
-import { checkFountain } from './fountain';
-import { checkLizard } from './lizard';
-import { checkONS } from './ons';
+import { checkPunks } from "./punks";
+import { checkDegens } from "./degens";
+import { checkExchange } from "./exchange";
+import { checkSirius } from "./sirius";
+import { checkVersa } from "./versa";
 import { checkTofu } from './tofu';
-import { checkValleySwap } from './valleyswap';
-import { checkYuzuSwap } from './yuzuswap';
 
 
 let loginAddress = localStorage.getItem("loginAddress");
@@ -141,23 +141,23 @@ const checkOffer = async function(offerName) {
     try {
         console.log(offerName);
         switch(offerName) {
-            case "Fountain":
-                result = await checkFountain();
+            case "Punks":
+                result = await checkPunks();
                 break;
-            case "Lizard":
-                result = await checkLizard();
+            case "Exchange":
+                result = await checkExchange();
                 break;
-            case "ONS":
-                result = await checkONS();
+            case "Degens":
+                result = await checkDegens();
                 break;
             case "Tofu":
                 result = await checkTofu();
                 break;
-            case "ValleySwap":
-                result = await checkValleySwap();
+            case "Versa":
+                result = await checkVersa();
                 break;
-            case "YuzuSwap":
-                result = await checkYuzuSwap();
+            case "Sirius":
+                result = await checkSirius();
                 break;
             default:
                 result

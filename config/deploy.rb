@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "offerwall_oasis"
+set :application, "offerwall_astar"
 set :repo_url, "git@github.com:brtr/offerwall_v2.git"
 
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/app/offerwall_oasis"
+set :deploy_to, "/home/deploy/app/offerwall_astar"
 
 set :linked_files, fetch(:linked_files, []).push('config/application.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
